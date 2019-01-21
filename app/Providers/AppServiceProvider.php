@@ -1,4 +1,3 @@
-use Illuminate\Support\Facades\Schema;
 <?php
 
 namespace App\Providers;

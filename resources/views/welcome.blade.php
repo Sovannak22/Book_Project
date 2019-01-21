@@ -65,9 +65,7 @@
         </style>
     </head>
     <body>
-        <div class="btn btn-danger">
-            Hello
-        </div>
+        
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">

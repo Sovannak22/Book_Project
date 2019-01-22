@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Model\Category;
 
 class Book extends Model
 {
@@ -12,8 +13,8 @@ class Book extends Model
         'share_price',
         'share_qty'
     ];
-    public function category(){
-        return $this->belongsTo('App/Model/Category');
+    public function categories(){
+        return $this->belongsToMany(Category::class);
     }
 
 

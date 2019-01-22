@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<<<<<<< HEAD
 </head>
 <body>
     <div id="app">
@@ -72,6 +73,13 @@
             </div>
         </nav>
 
+=======
+    <link rel="stylesheet" href="{{ asset('css/custome.css') }}">
+</head>
+<body>
+    @include('etc.header')
+    <div id="app">
+>>>>>>> 0c79cd23cf1c0fdc9c797fa3942bf88a68b21cbb
         <main class="py-4">
             @yield('content')
         </main>

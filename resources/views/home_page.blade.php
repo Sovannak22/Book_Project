@@ -65,10 +65,7 @@
         </style>
     </head>
     <body>
-<<<<<<< HEAD:resources/views/home_page.blade.php
-=======
-        
->>>>>>> 0c79cd23cf1c0fdc9c797fa3942bf88a68b21cbb:resources/views/welcome.blade.php
+
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">

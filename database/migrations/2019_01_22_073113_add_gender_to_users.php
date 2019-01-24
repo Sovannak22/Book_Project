@@ -15,7 +15,7 @@ class AddGenderToUsers extends Migration
     {
         Schema::table('users', function($table) {
         $table->string('gender');
-        $table->text('profile_img');
+        $table->string('profile_img')->default('default.jpg');
     });
     }
 
@@ -28,7 +28,7 @@ class AddGenderToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('gender');
-            $table->dropColumn('profile_img');
+            $table->dropColumnd('profile_img');
         });
     }
 }

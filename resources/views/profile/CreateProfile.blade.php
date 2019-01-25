@@ -84,7 +84,7 @@
 				
 			</div>
 			<div class="col-8">
-				<div class="row" style="margin-bottom: 10px">
+				<div class="row" style="margin-bottom : 10px">
 					<div class="col-4">
 						<div class="card" style="width: 18rem;">
 						  <img class="card-img-top" src=".../100px180/" alt="Card image cap">

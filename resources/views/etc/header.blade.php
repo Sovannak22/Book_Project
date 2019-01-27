@@ -50,7 +50,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link mt-1" style="">
+                        <a href="{{ route('book.index') }}" class="nav-link mt-1" style="">
                             <div class="" style="height:25px;border-left: solid #8c8c8c 0.1rem;border-right: solid #8c8c8c 0.1rem">
                                 <p class=""><b>Book Store</b></p>
                             </div>

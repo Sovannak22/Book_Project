@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Profile extends Model
+class Follow extends Model
 {
-    //
+    
 }

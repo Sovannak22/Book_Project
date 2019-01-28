@@ -12,13 +12,13 @@
 			<div class="col-6">
 				<div class="row">
 					<div class="col-4">
-						<h4>username</h4>
+						<b><h2>username</h2></b>
 					</div>
 					<div class="col-4">
-						<p>Follower</p>
+						<p class="btn">Follower {{$follower}}</p>
 					</div>
 					<div class="col-4">
-						<p>Following</p>
+						<p class="btn">Following {{$following}}</p>
 					</div>
 				</div>
 				<div class="row">
@@ -39,13 +39,13 @@
 			<div class="col-6">
 				<div class="row">
 					<div class="col-4 d-flex justify-content-center">
-						<i class="fas fa-store-alt btn" style="font-size: 40px"></i>
+						<i class="fas fa-store-alt btn" style="font-size: 30px"></i>
 					</div>
 					<div class="col-4 d-flex justify-content-center">
-						<i class="fas fa-clipboard btn" style="font-size: 40px"></i>
+						<i class="fas fa-clipboard btn" style="font-size: 30px"></i>
 					</div>
 					<div class="col-4 d-flex justify-content-center">
-						<i class="fas fa-book-reader btn" style="font-size: 40px"></i>
+						<i class="fas fa-book-reader btn" style="font-size: 30px"></i>
 					</div>
 				</div>
 				<div class="row">
@@ -91,7 +91,8 @@
 						  <div class="card-body">
 						    <h5 class="card-title">Card title</h5>
 						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						    <a href="#" class="btn btn-primary">Go somewhere</a>
+						    <a href="#" class="btn btn-primary">Buy</a>
+						    <a href="#" class="btn btn-primary">Add to Library</a>
 						  </div>
 						</div>
 					</div>

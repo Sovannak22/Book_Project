@@ -32,13 +32,13 @@
             <div class="col-sm-3 my-3">
 
                 <div class="card" style="width: 10rem;">
-                    <img class="card-img-top img-card " src="{{ $book->img }}" alt="Card image cap">
+                    <img class="card-img-top img-card" src="storage/book_img/{{ $book->img }}" alt="Card image cap">
                     <div class="card-body text-center">
                         <h5 class="card-title">{{ $book->title }}</h5>
 
                     </div>
                     <div class="card-footer text-center">
-                        <a href="#">View Detail</a>
+                        <a style="text-decoration: none;" href="#">View Detail</a>
                     </div>
                 </div>
 

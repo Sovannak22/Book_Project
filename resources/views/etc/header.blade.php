@@ -28,11 +28,11 @@
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                     @endif
-                @else   
+                @else
                     <li class="nav-item dropdown">
-                        
+
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            <img class="round-img" height="30px" width="30px" src="storage/profile_img/{{$user->profile_img}}"
+                            <img class="round-img" height="30px" width="30px" src="storage/profile_img/{{Auth::user() ->profile_img}}"
                                     alt="">
                                     {{-- style="border:solid black 2px;border-radius:25%" --}}
                             {{ Auth::user()->name }} <span class="caret"></span>

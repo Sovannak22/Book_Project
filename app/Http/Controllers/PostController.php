@@ -24,7 +24,12 @@ class PostController extends Controller
     {
         $posts = Post::all();
 
-        // return back()->withInput('posts');
         return view('posts.feeds', compact('posts'));
+    }
+    public function show($id)
+    {
+        $post = Post::find($id);
+
+        return view('posts.show', compact('post'));
     }
 }

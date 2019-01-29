@@ -70,13 +70,13 @@
                   </div>
                   <div class="row cmt-share-btn-group">
                     <div class="col">
-                      <button type="button" class="like-btn btn btn-light" name="button-like">like</button>
+                      <a type="button" class="like-btn btn btn-light button-like">like</a>
                     </div>
                     <div class="col">
-                      <button type="button" class="comment-btn btn btn-light button-comment" name="button-comment">comment</button>
+                      <a type="button" class="comment-btn btn btn-light button-comment" href="{{ route('feeds.show', $post->id) }}">comment</a>
                     </div>
                     <div class="col">
-                      <button type="button" class="share-btn btn btn-light" name="button-share">share</button>
+                      <a type="button" class="share-btn btn btn-light button-share">share</a>
                     </div>
                   </div>
                 </div>

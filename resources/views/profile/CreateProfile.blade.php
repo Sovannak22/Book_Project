@@ -7,12 +7,12 @@
 				
 			</div>
 			<div class="col-2 d-flex justify-content-center">
-				<img src="/images/yoobro.jpg" style="border-radius: 50%;width: 125px;height: 125px" alt="..." class="img-thumbnail">
+				<img src="images/{{Auth::user() ->profile_img}}" style="border-radius: 50%;width: 125px;height: 125px" alt="..." class="img-thumbnail">
 			</div>
 			<div class="col-6">
 				<div class="row">
 					<div class="col-4">
-						<b><h2>username</h2></b>
+						<b><h2>{{$username}}</h2></b>
 					</div>
 					<div class="col-4">
 						<p class="btn">Follower {{$follower}}</p>

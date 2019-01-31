@@ -13,7 +13,7 @@
 	    <div class="col d-flex justify-content-center">
         <div class="container feeds">
           <div class="d-flex justify-content-center">
-            <div class="form-group row upload-group">
+            <div class="form-group row upload-group col-10">
               <form class="" enctype="multipart/form-data" action="{{ route('feeds.store') }}" method="POST">
                 @csrf
                 <input class="status-upload upload-input" type="text" name="description" placeholder=" Tell us! What's in your mind!?">
@@ -23,7 +23,7 @@
           </div>
           @foreach ($posts as $post)
             <div class="d-flex justify-content-center">
-              <div class="post-status">
+              <div class="post-status col-10">
                 <div class="post">
                   <div class="row">
                     <div class="col">
@@ -70,13 +70,13 @@
                   </div>
                   <div class="row cmt-share-btn-group">
                     <div class="col">
-                      <a type="button" class="like-btn btn btn-light button-like">like</a>
+                      <a class="like-btn btn btn-secondary">like</a>
                     </div>
                     <div class="col">
-                      <a type="button" class="comment-btn btn btn-light button-comment" href="{{ route('feeds.show', $post->id) }}">comment</a>
+                      <a class="comment-btn btn btn-secondary" href="{{ route('feeds.show', $post->id) }}">comment</a>
                     </div>
                     <div class="col">
-                      <a type="button" class="share-btn btn btn-light button-share">share</a>
+                      <a class="share-btn btn btn-secondary">share</a>
                     </div>
                   </div>
                 </div>

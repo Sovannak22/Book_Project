@@ -1,7 +1,7 @@
 @extends('layouts.app')
 <style>
     .display-comment .display-comment {
-        margin-left: 40px
+        margin-left: 40px;
     }
 </style>
 
@@ -17,7 +17,7 @@
 
 <div class="container">
   <div class="row justify-content-center">
-    <div class="post-status">
+    <div class="post-status col-10">
       <div class="post">
         <div class="row">
           <div class="col">
@@ -64,10 +64,10 @@
         </div>
         <div class="row cmt-share-btn-group">
           <div class="col">
-            <button type="button" class="btn btn-light button-like-show">like</button>
+            <button type="button" class="btn btn-secondary button-like-show">like</button>
           </div>
           <div class="col">
-            <button type="button" class="btn btn-light button-share-show">share</button>
+            <button type="button" class="btn btn-secondary button-share-show">share</button>
           </div>
         </div>
       </div>
@@ -75,21 +75,24 @@
   </div>
 </div>
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="cmt-block">
-      <div class="col add-cmt">
-        <form method="post" >
-          @csrf
-          <input type="text" name="cmt-text" class="cmt-input" >
-          <input type="hidden" name="post_id" value="{{ $post->id }}" />
-          <button type="submit" name="button-add-cmt" class="btn btn-success add-cmt-btn">comment</button>
-        </form>
-      </div>
-      <div class="show-cmt">
-        <hr/>
-        <h4>Display Comments</h4>
-        @include('posts.comment_replies', ['comments' => $post->comments, 'post_id' => $post->id])
-        <hr />
+  <div class="row d-flex justify-content-center">
+    <div class="col-10" style="background:#E8E2E0;border:none;margin-top:10px;border-radius:10px;">
+      <div class="card" style="background:none;border:none;">
+        <div class="card-body">
+            <form method="post" action="{{ route('comment.add') }}">
+                @csrf
+                <div class="row form-group">
+                  <div class="col">
+                    <input type="text" name="cmt-text" class="form-control" placeholder=" Add comment"/>
+                    <input type="hidden" name="post_id" value="{{ $post->id }}" />
+                  </div>
+                  <div class="col-2">
+                    <input type="submit" class="btn btn-warning" value="Add Comment" />
+                  </div>
+              </div>
+            </form>
+          @include('posts.comments_replies', ['comments' => $post->comments, 'post_id' => $post->id])
+        </div>
       </div>
     </div>
   </div>

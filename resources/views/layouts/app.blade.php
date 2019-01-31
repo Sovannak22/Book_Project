@@ -25,7 +25,7 @@
     @yield('CSS')
 
 </head>
-<body>
+<body class="bg-secondary">
     @include('etc.header')
     <div id="app" class="container">
         <main class="py-4">

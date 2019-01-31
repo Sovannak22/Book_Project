@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-laravel">
-    <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
+    <div class="container ">
+        <a class="navbar-brand  text-success" href="{{ url('/') }}">
             {{ config('app.name', 'Laravel') }}
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -12,7 +12,7 @@
             <ul class="navbar-nav mr-auto">
                 <form class="form-inline">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0 " type="submit">Search</button>
                 </form>
             </ul>
 
@@ -31,7 +31,7 @@
                 @else   
                     <li class="nav-item dropdown">
                         
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown " class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             <img class="round-img" height="30px" width="30px" src="storage/profile_img/{{ Auth::user()->profile_img}}"
                                     alt="">
                                     {{-- style="border:solid black 2px;border-radius:25%" --}}

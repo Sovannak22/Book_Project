@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Book;
+use App\Model\Category;
 
 class BookController extends Controller
 {
@@ -25,7 +26,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('book.create',compact('categories'));
     }
 
     /**
@@ -36,7 +38,16 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $img = 'default.jpg';
+        $user_id = Auth::user()->id;
+        $book = new Book([
+            'title' => $request->get('title'),
+            'author' => $request->get('author'),
+            'description' => $request->get('description'),
+            'book_img' => $img,
+            'user_id' => $user_id,
+        ]);
+        dd($book);
     }
 
     /**

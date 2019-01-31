@@ -24,9 +24,6 @@
                                 @endif
                             </div>
                         </div>
-<<<<<<< HEAD
-
-=======
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Gender</label>
 
@@ -38,7 +35,6 @@
                                 </select>
                             </div>
                         </div>
->>>>>>> 0c79cd23cf1c0fdc9c797fa3942bf88a68b21cbb
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 

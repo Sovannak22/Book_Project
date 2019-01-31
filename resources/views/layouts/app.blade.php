@@ -19,13 +19,15 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/custome.css') }}">
+    @yield('css')
 </head>
-<body>
+<body class="bg-secondary">
     @include('etc.header')
     <div id="app">
         <main class="py-4">
             @yield('content')
         </main>
     </div>
+    @include('etc.footer')
 </body>
 </html>

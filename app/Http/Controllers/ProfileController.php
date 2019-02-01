@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Follow;
-use App\Model\User;
+use App\Model\Book;
 use Auth;
 class ProfileController extends Controller
 {
@@ -15,10 +15,11 @@ class ProfileController extends Controller
      */
     public function index()
     {
+        $books = Book::all();
         $username =  \Auth::user()->name;
-        $follower = Follow::where('user_id','Auth::user()->id')->count('follower_id');
-        $following = Follow::where('follower_id','Auth::user()->id')->count('user_id');
-        return view('profile.CreateProfile',compact('username','follower','following')); 
+        $follower = Follow::where('user_id',Auth::user()->id)->count('follower_id');
+        $following = Follow::where('follower_id',Auth::user()->id)->count('user_id');
+        return view('profile.CreateProfile',compact('username','follower','following','books')); 
     }
 
     /**

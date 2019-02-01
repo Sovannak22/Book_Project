@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 	<div class="container-fluid">
 		<div class="row ">
 			<div class="col-1">
@@ -27,7 +28,7 @@
 				</div>
 			</div>
 			<div class="col-2">
-				<button style="background-color: green">Follow</button>
+				<button style="background-color: green">Edit</button>
 			</div>
 		</div>
 	</div>
@@ -37,15 +38,15 @@
 				
 			</div>
 			<div class="col-6">
-				<div class="row">
-					<div class="col-4 d-flex justify-content-center">
+				<div class="row" id="myDIV">
+					<div class="col-4 d-flex justify-content-center button btn1-active" id="fbtn">
 						<i class="fas fa-store-alt btn" style="font-size: 30px"></i>
 					</div>
-					<div class="col-4 d-flex justify-content-center">
+					<div class="col-4 d-flex justify-content-center button" id="sbtn">
 						<i class="fas fa-clipboard btn" style="font-size: 30px"></i>
 					</div>
-					<div class="col-4 d-flex justify-content-center">
-						<i class="fas fa-book-reader btn" style="font-size: 30px"></i>
+					<div class="col-4 d-flex justify-content-center button" id="tbtn">
+						<i class="fas fa-cart-arrow-down btn" style="font-size: 30px"></i>
 					</div>
 				</div>
 				<div class="row">
@@ -56,7 +57,7 @@
 						<p>Feed</p>
 					</div>
 					<div class="col-4 d-flex justify-content-center">
-						<p>Library</p>
+						<p>Cart</p>
 					</div>
 				</div>
 			</div>
@@ -85,71 +86,22 @@
 			</div>
 			<div class="col-8">
 				<div class="row" style="margin-bottom : 10px">
-					<div class="col-4">
-						<div class="card" style="width: 18rem;">
-						  <img class="card-img-top" src=".../100px180/" alt="Card image cap">
-						  <div class="card-body">
-						    <h5 class="card-title">Card title</h5>
-						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						    <a href="#" class="btn btn-primary">Buy</a>
-						    <a href="#" class="btn btn-primary">Add to Library</a>
-						  </div>
+					@foreach($books as $book)
+					<div class="col-4" style="height:350px">
+						<div class="card">
+						  	<img class="card-img-top" src="images/{{$book->book_img}}" alt="Card image cap" style="width:75%;height:200px;margin: 0 auto;">
+						  	<div class="card-body">
+						    	<h5 class="card-title">{{$book->title}}</h5>
+						    	<p class="card-text">{{str_limit($book->description,$limit = 100, $end = '...')}}</p>
+						    	<div style="text-align: center;">
+						    		<a href="#" class="btn btn-success">Edit</a>
+						    		<a href="#" class="btn btn-danger">delete</a>
+						    	</div>
+						  	</di100
 						</div>
 					</div>
-					<div class="col-4">
-						<div class="card" style="width: 18rem;">
-						  <img class="card-img-top" src=".../100px180/" alt="Card image cap">
-						  <div class="card-body">
-						    <h5 class="card-title">Card title</h5>
-						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						    <a href="#" class="btn btn-primary">Go somewhere</a>
-						  </div>
-						</div>
-					</div>
-					<div class="col-4">
-						<div class="card" style="width: 18rem;">
-						  <img class="card-img-top" src=".../100px180/" alt="Card image cap">
-						  <div class="card-body">
-						    <h5 class="card-title">Card title</h5>
-						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						    <a href="#" class="btn btn-primary">Go somewhere</a>
-						  </div>
-						</div>
-					</div>
+					@endforeach
 				</div>
-				<div class="row">
-					<div class="col-4">
-						<div class="card" style="width: 18rem;">
-						  <img class="card-img-top" src=".../100px180/" alt="Card image cap">
-						  <div class="card-body">
-						    <h5 class="card-title">Card title</h5>
-						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						    <a href="#" class="btn btn-primary">Go somewhere</a>
-						  </div>
-						</div>
-					</div>
-					<div class="col-4">
-						<div class="card" style="width: 18rem;">
-						  <img class="card-img-top" src=".../100px180/" alt="Card image cap">
-						  <div class="card-body">
-						    <h5 class="card-title">Card title</h5>
-						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						    <a href="#" class="btn btn-primary">Go somewhere</a>
-						  </div>
-						</div>
-					</div>
-					<div class="col-4">
-						<div class="card" style="width: 18rem;">
-						  <img class="card-img-top" src=".../100px180/" alt="Card image cap">
-						  <div class="card-body">
-						    <h5 class="card-title">Card title</h5>
-						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						    <a href="#" class="btn btn-primary">Go somewhere</a>
-						  </div>
-						</div>
-					</div>
-				</div>
-
 			</div>
 			<div class="col-2">
 				

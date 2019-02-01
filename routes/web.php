@@ -23,6 +23,7 @@ Route::get('/feeds', 'PostController@index')->name('feeds');
 
 Route::post('/feeds/store', 'PostController@store')->name('feeds.store');
 Route::get('/feeds/show/{id}', 'PostController@show')->name('feeds.show');
+Route::get('feeds/like/{id}', 'PostController@like')->name('feeds.like');
 
 Route::post('/comment/store', 'CommentController@store')->name('comment.add');
 Route::post('/reply/store', 'CommentController@replyStore')->name('reply.add');

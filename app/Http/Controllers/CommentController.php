@@ -23,12 +23,6 @@ class CommentController extends Controller
     }
     public function replyStore(Request $request)
     {
-        // $reply = new Comment();
-        // $reply->description = $request->get('cmt-text');
-        // $reply->user()->associate($request->user());
-        // $reply->parent_id = $request->get('comment_id');
-        // $post = Post::find($request->get('post_id'));
-
         $reply = new Comment();
         $reply->description = $request->get('cmt-text');
         $reply->user()->associate(Auth::user()->id);

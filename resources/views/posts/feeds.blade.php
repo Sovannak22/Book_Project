@@ -65,12 +65,18 @@
                       </div>
                     </div>
                     <div class="col-2">
-                      <p>99 + comments</p>
+                      <p>{{ $comment->where('post_id', $post->id)->count() }}
+                        @if ($comment->where('post_id', $post->id)->count() <= 1)
+                          comment
+                        @else
+                          comments
+                        @endif
+                      </p>
                     </div>
                   </div>
                   <div class="row cmt-share-btn-group">
                     <div class="col">
-                      <a class="like-btn btn btn-secondary">like</a>
+                      <a class="like-btn btn btn-secondary" href="{{ route('feeds.like', $post->id) }}">like</a>
                     </div>
                     <div class="col">
                       <a class="comment-btn btn btn-secondary" href="{{ route('feeds.show', $post->id) }}">comment</a>

@@ -1,0 +1,7 @@
+body{
+    background-color: #8c8c8c;
+}
+a:hover{
+    text-decoration: none;
+    color:green;
+}

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use App\Model\Follow;
-use App\Model\Book;
 use Auth;
-class ProfileController extends Controller
+use App\Model\Category;
+use App\Model\Book;
+use Image;
+
+class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +18,8 @@ class ProfileController extends Controller
     public function index()
     {
         $books = Book::all();
-        $username =  \Auth::user()->name;
-        $follower = Follow::where('user_id',Auth::user()->id)->count('follower_id');
-        $following = Follow::where('follower_id',Auth::user()->id)->count('user_id');
-        return view('profile.CreateProfile',compact('username','follower','following','books')); 
+        return view('books.index')->with('books',$books);
+
     }
 
     /**
@@ -29,7 +29,9 @@ class ProfileController extends Controller
      */
     public function create()
     {
-      
+        
+        $categories = Category::all();
+        return view('books.create')->with('categories',$categories);
     }
 
     /**
@@ -40,7 +42,23 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $img = 'default.jpg';
+        $store_id = Auth::user()->store->id;
+        $book = new Book([
+            'title' => $request->get('title'),
+            'author' => $request->get('author'),
+            'description' => $request->get('description'),
+            'book_img' => $img,
+        ]);
+        if($request->hasFile('book_img')){
+            $book_img = $request->file('book_img');
+            $fileName = time().'.'.$book_img->getClientOriginalExtension();
+            Image::make($book_img)->resize(250,350)->save(public_path('/storage/book_img/'.$fileName));
+            $book->book_img=$fileName;
+        }
+        $book->store_id=$store_id;
+        $book->save();
+        $book->categories()->sync($request->get('categories'));
     }
 
     /**

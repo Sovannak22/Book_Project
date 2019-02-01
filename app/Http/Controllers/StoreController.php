@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Store;
 use Illuminate\Http\Request;
-// use App\Model\Follow;
-use App\Model\Book;
 use Auth;
-class ProfileController extends Controller
+
+class StoreController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +15,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $books = Book::all();
-        $username =  \Auth::user()->name;
-        $follower = Follow::where('user_id',Auth::user()->id)->count('follower_id');
-        $following = Follow::where('follower_id',Auth::user()->id)->count('user_id');
-        return view('profile.CreateProfile',compact('username','follower','following','books')); 
+        //
     }
 
     /**
@@ -29,7 +25,9 @@ class ProfileController extends Controller
      */
     public function create()
     {
-      
+        $user=Auth::user();
+        
+        return view('stores.create')->with('user',$user);
     }
 
     /**
@@ -40,7 +38,16 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $store = new Store([
+            'description'=> $request->get('description'),
+            'store_type_id' => '1',
+            'user_id' => Auth::user()->id,
+        ]);
+        $user=Auth::user();
+        $user->has_store=1;
+        $store->save();
+        $user->save();
+        return redirect('stores');
     }
 
     /**
@@ -51,7 +58,10 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        //
+        $books=Store::find($id)->books;
+        
+        // dd($books[0]->store->user->id);
+        return view('stores.show')->with(['books'=>$books,]);
     }
 
     /**

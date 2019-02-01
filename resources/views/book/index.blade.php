@@ -9,17 +9,20 @@
 
     <div class="row">
         <h1 class="col-md-9 text-success">Book Store</h1>
-        <div class="col-md-3 dropdown show  font-weight-bold mt-auto  text-success">
-            Sorb by
-            <a class="dropbtn btn btn-sm btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Interested
-            </a>
-
-            <div class="dropdown-content" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="#">Interested</a>
-                <a class="dropdown-item" href="#">Date</a>
-                <a class="dropdown-item" href="#">Name</a>
+        <div class="col-md-3 font-weight-bold mt-auto  text-success">
+            <div class="float-right dropdown show">
+                    Sorb by
+                    <a class="dropbtn btn  btn-sm btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Interested
+                    </a>
+                    
+                    
+                    <div class="dropdown-content" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="#">Interested</a>
+                        <a class="dropdown-item" href="#">Date</a>
+                        <a class="dropdown-item" href="#">Name</a>
+                    </div>
             </div>
         </div>
         <div>
@@ -53,7 +56,7 @@
                                         <div class="card-body text-center">
                                             <p><img class=" img-fluid" src="storage/book_img/{{ $book->img }}" alt="card image"></p>
                                             <h4 class="card-title">{{ $book->title }}</h4>
-                                            <p class="card-text">Author: <b>{{ $book->author }}</b> </p>
+                                            <p class="card-text">Author: <b>{{ $book->author }}</b></p>
                                             {{-- <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a> --}}
                                         </div>
                                     </div>

@@ -35,7 +35,7 @@
 				</div>
 			</div>
 			<div class="col-2">
-				<button style="background-color: green">Edit</button>
+				<button style="background-color: green" class="btn btn-success">Edit</button>
 			</div>
 		</div>
 	</div>

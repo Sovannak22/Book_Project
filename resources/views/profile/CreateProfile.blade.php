@@ -7,21 +7,28 @@
 			<div class="col-1">
 				
 			</div>
+<!-- profile image ------------------------------------------------------------------------------------------>
 			<div class="col-2 d-flex justify-content-center">
-				<img src="images/{{Auth::user() ->profile_img}}" style="border-radius: 50%;width: 125px;height: 125px" alt="..." class="img-thumbnail">
+				<div class="btn">
+					<img data-toggle="modal" data-target="#imageButton" src="images/{{Auth::user() ->profile_img}}" style="border-radius: 50%;width: 125px;height: 125px" alt="..." class="img-thumbnail">
+				</div>
 			</div>
 			<div class="col-6">
 				<div class="row">
+<!-- username -------------------------------------------------------------------------------------------->
 					<div class="col-4">
 						<b><h2>{{$username}}</h2></b>
 					</div>
+<!-- follower ----------------------------------------------------------------------------------=====---->
 					<div class="col-4">
-						<p class="btn">Follower {{$follower}}</p>
+						<p class="btn" data-toggle="modal" data-target="#followerButton">{{$follower}} Follower</p>
 					</div>
+<!-- following---------------------------------------------------------------------------------------->
 					<div class="col-4">
-						<p class="btn">Following {{$following}}</p>
+						<p class="btn" data-toggle="modal" data-target="#followingButton">{{$following}} Following</p>
 					</div>
 				</div>
+<!-- description--------------------------------------------------------------------------------------->
 				<div class="row">
 					<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
 					</p>
@@ -66,6 +73,7 @@
 			</div>
 		</div>
 	</div>
+	<!-- line hr ===========================================================-->
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-2">
@@ -79,6 +87,7 @@
 			</div>
 		</div>
 	</div>
+	<!-- midle content============================================================= -->
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-2">
@@ -108,4 +117,111 @@
 			</div>
 		</div>
 	</div>
+<!-- follower alert===================================================================== -->
+<div class="modal fade" id="followerButton" tabindex="-1" role="dialog" aria-labelledby="followerButton" aria-hidden="true" style="margin-top: 5%;">
+	<div class="modal-dialog" role="document">
+	   <div class="modal-content">
+	     <div class="modal-header">
+	     	<div class="col-4"></div>
+	     	<h5 class="col-4 modal-title text-center" id="followerButton">Follower</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	     </div>
+	    	<div class="modal-body" id="followModal">
+	      		<div class="container">
+	      			<div class="row">
+	      				<div class="col-4 d-flex justify-content-center">
+							<img src="images/default.jpg" alt="tktk" style="border-radius: 50%;width: 30px;height: 30px">
+						</div>
+						<div class="col-4 d-flex justify-content-center">
+							<p>usename</p>
+						</div>
+						<div class="col-4 d-flex justify-content-center">
+							<button style="height: 30px" class="btn btn-primary">Follow</button>
+						</div>
+
+						<div class="col-4 d-flex justify-content-center">
+							<img src="images/default.jpg" alt="tktk" style="border-radius: 50%;width: 30px;height: 30px">
+						</div>
+						<div class="col-4 d-flex justify-content-center">
+							<p>usename</p>
+						</div>
+						<div class="col-4 d-flex justify-content-center">
+							<button style="background-color:;height: 30px" class="btn btn-light">Following</button>
+						</div>
+	      			</div>
+	      		</div>
+	      	</div>
+	   </div>
+	  </div>
+</div>
+<!-- following alert====================================================================== -->
+<div class="modal fade" id="followingButton" tabindex="-1" role="dialog" aria-labelledby="followingButton" aria-hidden="true" style="margin-top: 5%;">
+	<div class="modal-dialog" role="document">
+	   <div class="modal-content">
+	     <div class="modal-header">
+	     	<div class="col-4"></div>
+	     	<h5 class="col-4 modal-title text-center" id="followingButton">Follower</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	     </div>
+	    	<div class="modal-body" id="followModal">
+	      		<div class="container">
+	      			<div class="row">
+	      				<div class="col-4 d-flex justify-content-center">
+							<img src="images/default.jpg" alt="tktk" style="border-radius: 50%;width: 30px;height: 30px">
+						</div>
+						<div class="col-4 d-flex justify-content-center">
+							<p>usename</p>
+						</div>
+						<div class="col-4 d-flex justify-content-center">
+							<button style="background-color:;height: 30px" class="btn btn-light">Following</button>
+						</div>
+
+						<div class="col-4 d-flex justify-content-center">
+							<img src="images/default.jpg" alt="tktk" style="border-radius: 50%;width: 30px;height: 30px">
+						</div>
+						<div class="col-4 d-flex justify-content-center">
+							<p>usename</p>
+						</div>
+						<div class="col-4 d-flex justify-content-center">
+							<button style="background-color:;height: 30px" class="btn btn-light">Following</button>
+						</div>
+	      			</div>
+	      		</div>
+	      	</div>
+	   </div>
+	  </div>
+</div>
+<!-- change image alert==================================================================== -->
+<div class="modal fade" id="imageButton" tabindex="-1" role="dialog" aria-labelledby="imageButton" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="height: 40%">
+      <div class="modal-header">
+      	<div class="col-4"></div>
+        <h5 class="modal-title col-4" id="imageButton">Change Photo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        	<div class="container">
+        		<div class="row">
+        			<div class="btn btn-primary btn-file col-12">
+					    Upload Photo <input type="file">
+					</div>
+        		</div>
+        		<hr>
+        		<div class="row">
+        			<div class="btn btn-danger btn-remove col-12">
+					    Remove Current profile
+					</div>
+        		</div>
+        	</div>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection

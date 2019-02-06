@@ -133,6 +133,7 @@ section .section-title {
 }
 
 .backside {
+    width: 255px;
     position: absolute;
     top: 0;
     left: 0;

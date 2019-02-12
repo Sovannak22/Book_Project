@@ -68,7 +68,7 @@
                                             <p class="card-text">{{ $book->description }}</p>
                                         </div>
                                         <div class="card-footer text-center">
-                                            <a href="#" ><img src="storage/book_img/add_to_card.png" title="Add to Card"></a>
+                                            <a href="{{ route('book.addToCart',[$user->id,$book->id]) }}" ><img src="storage/book_img/add_to_card.png" title="Add to Card"></a>
                                         </div>
                                     </div>
                                 </div>

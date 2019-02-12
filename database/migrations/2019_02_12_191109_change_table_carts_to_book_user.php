@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBookCartsTable extends Migration
+class ChangeTableCartsToBookUser extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,7 @@ class CreateBookCartsTable extends Migration
      */
     public function up()
     {
-        Schema::create('book_carts', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('book_id')->unsigned();
-            $table->integer('cart_id')->unsigned();
-            $table->timestamps();
-        });
+        Schema::rename('carts', 'book_user');
     }
 
     /**
@@ -28,6 +23,6 @@ class CreateBookCartsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('book_carts');
+        Schema::rename('book_user','carts');
     }
 }

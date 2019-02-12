@@ -24,5 +24,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('book','BookController')->middleware('auth');
+Route::get('book/{user_id}/{book_id}', 'BookController@addToCart')->name('book.addToCart');
 
 

@@ -6,7 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-use App\Model\Cart;
+use App\Model\Book;
 
 class User extends Authenticatable
 {
@@ -30,7 +30,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function carts(){
-        return $this->hasOne(Cart::class);
+    public function books(){
+        return $this->BelongsToMany(Book::class);
     }
 }

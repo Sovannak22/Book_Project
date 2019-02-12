@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Model\Category;
-use App\Model\Cart;
+use App\User;
 
 class Book extends Model
 {
@@ -14,8 +14,8 @@ class Book extends Model
         return $this->belongsToMany(Category::class);
     }
 
-    public function carts(){
-        return $this->belongsToMany(Cart::class);
+    public function users(){
+        return $this->belongsToMany(User::class);
     }
 
 }

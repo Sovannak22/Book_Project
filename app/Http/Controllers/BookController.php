@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Book;
+use App\User;
 use App\Model\Category;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -16,7 +18,8 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::all();
-        return view('book.index',compact('books'));
+        $user = Auth::user();
+        return view('book.index',compact('books','user'));
     }
 
     /**
@@ -48,6 +51,16 @@ class BookController extends Controller
             'user_id' => $user_id,
         ]);
         dd($book);
+    }
+    public function addToCart($user_id, $book_id)
+    {
+        // $user = User::find($user_id);
+        // $book = Book::find($book_id);
+        User::find($user_id)->books()->attach($book_id);
+        // Book::find($book_id)->users()->attach($user_id);
+        
+        
+        
     }
 
     /**

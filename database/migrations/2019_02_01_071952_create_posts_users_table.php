@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPriceToTableBooks extends Migration
+class CreatePostsUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddPriceToTableBooks extends Migration
      */
     public function up()
     {
-        Schema::table('books', function (Blueprint $table) {
-            $table->float('price', 8, 2);
+        Schema::create('post_user', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('post_id');
+            $table->unsignedInteger('user_id');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AddPriceToTableBooks extends Migration
      */
     public function down()
     {
-        Schema::table('books', function (Blueprint $table) {
-            $table->dropColumn('price');
-        });
+        Schema::dropIfExists('post_user');
     }
 }

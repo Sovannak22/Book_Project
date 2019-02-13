@@ -13,6 +13,10 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/custome.js') }}"></script>
     <script src="{{ asset('js/select2.js') }}"></script>
+
+    <!-- fontawesome css -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -22,11 +26,12 @@
     <link rel="stylesheet" href="{{ asset('css/custome.css') }}">
     <link href="{{ asset('css/select2.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    @yield('CSS')
 
 </head>
-<body>
+<body class="bg-secondary">
     @include('etc.header')
-    <div id="app">
+    <div id="app" class="container">
         <main class="py-4">
             @yield('content')
         </main>

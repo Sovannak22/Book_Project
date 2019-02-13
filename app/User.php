@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use App\Model\Post;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -33,5 +34,10 @@ class User extends Authenticatable
 
     public function cart(){
         return $this->hasOne('App\Model\Cart');
+    }
+
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class);
     }
 }

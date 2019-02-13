@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Comment;
@@ -23,7 +24,7 @@ class PostController extends Controller
     }
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::all()->sortByDesc('created_at');
         $comment = Comment::all();
         return view('posts.feeds', compact(['posts', 'comment']));
     }
@@ -35,9 +36,10 @@ class PostController extends Controller
     }
     public function like($id)
     {
-      $post = Post::find(id);
-      $post->save();
-
+      $current = Carbon::now();
+      $current = new Carbon();
+      $post = Post::find($id);
+      $post->users()->attach(Auth::user()->id, ['created_at' => $current, 'updated_at' => $current]);
       return back();
     }
 }

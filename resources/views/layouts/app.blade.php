@@ -10,12 +10,16 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
+<<<<<<< HEAD
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/custome.js') }}"></script>
     <script src="{{ asset('js/select2.js') }}"></script>
 
     <!-- fontawesome css -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+=======
+    <script src="{{ asset('js/app.js') }}" ></script>
+>>>>>>> 1cf931eaf44dd3b6d26871206ff32ceae909f599
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -24,10 +28,14 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/custome.css') }}">
+<<<<<<< HEAD
     <link href="{{ asset('css/select2.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     @yield('CSS')
 
+=======
+    @yield('css')
+>>>>>>> 1cf931eaf44dd3b6d26871206ff32ceae909f599
 </head>
 <body class="bg-secondary">
     @include('etc.header')
@@ -36,7 +44,11 @@
             @yield('content')
         </main>
     </div>
+<<<<<<< HEAD
     @yield('js')
     @show
+=======
+    @include('etc.footer')
+>>>>>>> 1cf931eaf44dd3b6d26871206ff32ceae909f599
 </body>
 </html>

@@ -1,6 +1,7 @@
 @extends('layouts.store_master')
 @section('css')
     <link href='https://fonts.googleapis.com/css?family=Devonshire' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ asset('css/bookIndex.css') }}">
     <style>
         .masthead {
         /* margin-bottom: 50px; */
@@ -90,30 +91,35 @@
         <div class="row" id="books_show">
             @if(count($books)>0)
                 @foreach ($books as $book)
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div style="height:375px" class="card mt-3 py-1">
-                        <img style="width:75%;height:200px;margin: 0 auto;" class="card-img-top" src="storage/book_img/{{$book->book_img}}" alt="Card image" style="width:100%">
-                        <div class="card-body">
-                            <a href=""><h4 class="card-title">{{$book->title}}</h4></a>
-                            <small class="card-text">by {{$book->author}}</small>
-                            <div class="row">
-                                <div class="col-lg-9 col-md-9 col-sm-9 col-9">
-                                    <div style="height:30px">
-                                        <p class="card-text">
-                                            {{ str_limit($book->description, $limit = 40, $end = '...') }}
-                                        </p>
+                <div class="col-sm-3 my-3">
+                    <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                            <div class="mainflip">
+                                <div class="frontside">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <p><img class=" img-fluid" src="storage/book_img/{{ $book->img }}" alt="card image"></p>
+                                            <h4 class="card-title">{{ $book->title }}</h4>
+                                            <p class="card-text">Author: <b>{{ $book->author }}</b></p>
+                                            {{-- <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a> --}}
+                                        </div>
                                     </div>
-                                    <hr>
-                                    <small class="bg-primary rounded p-1">Price: {{$book->price}}$</small>
                                 </div>
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-3">
-                                    <a href="" class="btn btn-primary round-img"><i class="fa fa-check"></i></a>
-                                    <button class="btn btn-warning mt-1 round-img" onclick="alertAddToCart(this)" value="{{$book->id}}"><i class="fa fa-cart-plus"></i></button>
+                                <div class="backside">
+                                    <div class="card">
+                                        <div class="card-body text-center mt-4">
+                                            <h4 class="card-title">{{ $book->title }}</h4>
+                                            <p class="card-text">{{ $book->description }}</p>
+                                        </div>
+                                        <div class="card-footer text-center">
+                                            <a href="" ><img src="storage/book_img/add_to_card.png" title="Add to Card"></a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+
+
+            </div>
                 @endforeach
             @else
                 <div class="container-fluid mt-5">

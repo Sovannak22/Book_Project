@@ -97,10 +97,9 @@
                                 <div class="frontside">
                                     <div class="card">
                                         <div class="card-body text-center">
-                                            <p><img class=" img-fluid" src="storage/book_img/{{ $book->img }}" alt="card image"></p>
+                                            <img style="border-radius:0% !important" class="img-fluid" src="storage/book_img/{{$book->book_img}}" alt="card image">
                                             <h4 class="card-title">{{ $book->title }}</h4>
                                             <p class="card-text">Author: <b>{{ $book->author }}</b></p>
-                                            {{-- <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -111,7 +110,9 @@
                                             <p class="card-text">{{ $book->description }}</p>
                                         </div>
                                         <div class="card-footer text-center">
-                                            <a href="" ><img src="storage/book_img/add_to_card.png" title="Add to Card"></a>
+                                            <button class="btn btn-warning rounded" onclick="alertAddToCart(this)" value="{{$book->id}}">
+                                                <i class="fa fa-cart-plus"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -133,8 +134,7 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('js/addToCart
-    .js') }}"></script>
+    <script src="{{ asset('js/addToCart.js') }}"></script>
     <script>
         $(document).ready(function(){
             @foreach($categories as $category)

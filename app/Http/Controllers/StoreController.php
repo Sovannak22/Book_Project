@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Model\Store;
+use App\Model\Book;
 use Illuminate\Http\Request;
 use Auth;
 
 class StoreController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth',['except'=>['index','show']]);
+        
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +21,8 @@ class StoreController extends Controller
      */
     public function index()
     {
-        //
+        $stores=Store::all();
+        return view('stores.index')->with('stores',$stores);
     }
 
     /**
@@ -38,12 +45,17 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
+
         $store = new Store([
-            'description'=> $request->get('description'),
+            'store_description'=> $request->get('description'),
             'store_type_id' => '1',
-            'user_id' => Auth::user()->id,
         ]);
+        $store->store_name = $request->get('store_name');
+        $store->address = $request->get('address');
+        $store->email = $request->get('email');
+        $store->phone_number = $request->get('phone_number');
         $user=Auth::user();
+        $store->user_id = $user->id;
         $user->has_store=1;
         $store->save();
         $user->save();
@@ -58,10 +70,8 @@ class StoreController extends Controller
      */
     public function show($id)
     {
-        $books=Store::find($id)->books;
-        
-        // dd($books[0]->store->user->id);
-        return view('stores.show')->with(['books'=>$books,]);
+        $store = Store::find($id);
+        return view('stores.show')->with(['store'=>$store]);
     }
 
     /**
@@ -70,9 +80,31 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function manage($id){
+
+        if (Auth::user()->has_store==1){
+            $bookInStore=count(Store::find($id)->books);
+            $bookPercentage=($bookInStore)/(Store::find($id)->store_type->amount);
+            $bookSide=0;
+            $books=Store::find($id)->books;
+            if ($bookPercentage>0.1){
+                $bookSide=round($bookPercentage/$bookPercentage);
+            }
+            $data=array(
+                'store' => (Store::find($id)),
+                'bookSide' => $bookSide,
+                'books' => $books,
+                
+            );
+            return view('stores.manage')->with($data);
+        }
+        else{
+            return redirect('missstore')->withErrors(['You need to create store for your account first']);
+        }
+    }
     public function edit($id)
     {
-        //
+        
     }
 
     /**

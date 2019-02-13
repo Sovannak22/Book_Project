@@ -10,13 +10,23 @@
         <a class="nav-link" href="index.html">Home</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="about.html">Store</a>
+        <a class="nav-link" href="/stores">Store</a>
         </li>
         <li class="nav-item">
         <a class="nav-link" href="post.html">Blog</a>
         </li>
         <li class="nav-item">
         <a class="nav-link" href="contact.html">Profile</a>
+        </li>
+        <li class="nav-item">
+            <a href="/cart" class="nav-link">
+                <i class="fa fa-shopping-cart"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="" class="nav-link">
+                <i class="fa fa-question-circle"></i>
+            </a>
         </li>
     </ul>
     </div>

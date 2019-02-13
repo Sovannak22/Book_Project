@@ -6,10 +6,26 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Model\Category;
 use App\Model\Book;
+use App\Model\Store;
+use App\Model\Condition;
+use App\Model\ForModel;
 use Image;
+use Illuminate\Support\Facades\DB;
+use View;
 
 class BookController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth',['except'=>['index','show','booksCategory','search']]);
+        $categories = Category::orderBy('category','asc')->get();
+        $conditions = Condition::all();
+        $fors = ForModel::all();
+        View::share('categories', $categories);
+        View::share('conditions', $conditions);
+        View::share('fors', $fors);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -29,9 +45,14 @@ class BookController extends Controller
      */
     public function create()
     {
-        
-        $categories = Category::all();
-        return view('books.create')->with('categories',$categories);
+        if (Auth::user()->has_store==1){
+            $conditions = Condition::all();
+            $fors = ForModel::all();
+            return view('books.create');
+        }
+        else{
+            return redirect('missstore')->withErrors(['You need to create store for your account first']);
+        }
     }
 
     /**
@@ -50,6 +71,9 @@ class BookController extends Controller
             'description' => $request->get('description'),
             'book_img' => $img,
         ]);
+        $book->for_id=$request->get('for');
+        $book->condition_id=$request->get('condition');
+        $book->price=$request->get('price');
         if($request->hasFile('book_img')){
             $book_img = $request->file('book_img');
             $fileName = time().'.'.$book_img->getClientOriginalExtension();
@@ -59,6 +83,7 @@ class BookController extends Controller
         $book->store_id=$store_id;
         $book->save();
         $book->categories()->sync($request->get('categories'));
+        return redirect("/managestore/{$store_id}");
     }
 
     /**
@@ -104,5 +129,33 @@ class BookController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function erroMissingStore(){
+        return view('books.create_store');
+    }
+
+    public function search(Request $request){
+        $searchData = $request->searchBook;
+        $books = DB::table('books')
+            ->where('title','like','%'.$searchData.'%')
+            ->get();
+        return view('books.index')->with('books',$books);
+    
+    }
+
+    public function booksCategory(Request $request){
+        $category_id = $request->get("cat_id");
+        if($category_id==0){
+            $books = Book::all();
+        }
+        else{
+            $books = DB::table('books')
+                ->join('book_category','books.id','book_category.book_id')
+                ->join('categories','categories.id','book_category.category_id')
+                ->where('categories.id',$category_id)
+                ->get();
+        }
+        return view('books.book_cat_show')->with('books',$books);
     }
 }

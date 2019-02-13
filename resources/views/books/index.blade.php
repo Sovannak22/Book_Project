@@ -36,8 +36,10 @@
             left: 50%;
             margin-top: 10px;
             margin-left: -145px;
-            font-family: 'Devonshire';
             color: rgb(255, 255, 255);
+        }
+        #site_name>h1,#site_name>p{
+            font-family: 'Devonshire';
         }
         #site_name>h1{
             font-size: 5rem;
@@ -63,34 +65,99 @@
             <div id="site_name" class="text-center">
                 <h1><b>Site name</b></h1>
                 <p>Hey!we have that book you like.</p>
-                <form class="form-inline">
-                    <input class="form-control w-75 mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <form action="\searchBooks" class="form-inline" method="GET">
+                    <input name="searchBook" class="form-control w-75 mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success mt-1" type="submit">Search</button>
                 </form>
             </div>
             
         </div>
         <div class="row">
-
-            @foreach ($books as $book)
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <a href="">
-                    <div style="height:350px" class="card mt-3">
-                        <img style="width:75%;height:200px;margin: 0 auto;" class="card-img-top mt-1" src="storage/book_img/{{$book->book_img}}" alt="Card image" style="width:100%">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-3">
+                <div class="dropdown">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        Categories
+                    </button>
+                    <div class="dropdown-menu">
+                        <button id="cat0" class="dropdown-item" value="0">All</button>
+                        @foreach ($categories as $category)
+                            <button id="cat{{$category->id}}" class="dropdown-item" value="{{$category->id}}">{{$category->category}}</button>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="books_show">
+            @if(count($books)>0)
+                @foreach ($books as $book)
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div style="height:375px" class="card mt-3 py-1">
+                        <img style="width:75%;height:200px;margin: 0 auto;" class="card-img-top" src="storage/book_img/{{$book->book_img}}" alt="Card image" style="width:100%">
                         <div class="card-body">
-                        <h4 class="card-title">{{$book->title}}</h4>
-                        <small class="card-text">by {{$book->author}}</small>
-                        <p class="card-text">{{ str_limit($book->description, $limit = 50, $end = '...') }}</p>
+                            <a href=""><h4 class="card-title">{{$book->title}}</h4></a>
+                            <small class="card-text">by {{$book->author}}</small>
+                            <div class="row">
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-9">
+                                    <div style="height:30px">
+                                        <p class="card-text">
+                                            {{ str_limit($book->description, $limit = 40, $end = '...') }}
+                                        </p>
+                                    </div>
+                                    <hr>
+                                    <small class="bg-primary rounded p-1">Price: {{$book->price}}$</small>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-3">
+                                    <a href="" class="btn btn-primary round-img"><i class="fa fa-check"></i></a>
+                                    <button class="btn btn-warning mt-1 round-img" onclick="alertAddToCart(this)" value="{{$book->id}}"><i class="fa fa-cart-plus"></i></button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </a>
-            </div>
-            @endforeach
+                </div>
+                @endforeach
+            @else
+                <div class="container-fluid mt-5">
+                    <h1 class="text-center">
+                        No book found
+                    </h1>
+                </div>
+            @endif
         </div>
     </div>
 @endsection
 
-@section('script')
+@section('js')
+    <script src="{{ asset('js/addToCart
+    .js') }}"></script>
     <script>
+        $(document).ready(function(){
+            @foreach($categories as $category)
+                $("#cat{{$category->id}}").click(function(){
+                    var cat = $("#cat{{$category->id}}").val();
+                    $.ajax({
+                        type: 'get',
+                        dataType: 'html',
+                        url: "{{url('/productCat')}}",
+                        data: 'cat_id=' + cat,
+                        success:function(response){
+                            $("#books_show").html(response);
+                        }
+                    });
+                });
+            @endforeach
+            $("#cat0").click(function(){
+                var cat = $("#cat0").val();
+                $.ajax({
+                    type: 'get',
+                    dataType: 'html',
+                    url: "{{url('/productCat')}}",
+                    data: 'cat_id=' + cat,
+                    success:function(response){
+                        console.log(response);
+                        $("#books_show").html(response);
+                    }
+                });
+            });
+        });
     </script>
 @endsection

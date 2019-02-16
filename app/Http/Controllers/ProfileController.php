@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Model\Follow;
 use App\Model\Book;
 use Auth;
+use App\User;
+use Image;
 class ProfileController extends Controller
 {
     /**
@@ -72,10 +74,25 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-        //
+        // $user = User::find($id);
+        // $user->profile_img = $request->get('profile_img');
+        // $user->save();
+
+        if($request->hasFile('profile_img')){
+            $profile_img = $request->file('profile_img');
+            $filename = time() . '.' . $profile_img->getClientOriginalExtension();
+            Image::make($profile_img)->resize(300, 300)->save( public_path('/images/' . $filename ) );
+
+            $user = user::find($id);
+            $user->profile_img = $filename;
+            $user->save();
+        }
+
+       return redirect('/profile');
     }
+    
 
     /**
      * Remove the specified resource from storage.

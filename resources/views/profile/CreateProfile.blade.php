@@ -10,7 +10,7 @@
 <!-- profile image ------------------------------------------------------------------------------------------>
 			<div class="col-2 d-flex justify-content-center">
 				<div class="btn">
-					<img data-toggle="modal" data-target="#imageButton" src="images/{{Auth::user() ->profile_img}}" style="border-radius: 50%;width: 125px;height: 125px" alt="..." class="img-thumbnail">
+					<img data-toggle="modal" data-target="#imageButton" src="/images/{{Auth::user() ->profile_img}}" style="border-radius: 50%;width: 125px;height: 125px" alt="..." class="img-thumbnail">
 				</div>
 			</div>
 			<div class="col-6">
@@ -210,7 +210,11 @@
         	<div class="container">
         		<div class="row">
         			<div class="btn btn-primary btn-file col-12">
-					    Upload Photo <input type="file">
+        				<form enctype="multipart/form-data" action="{{ route('profile.update',Auth::user()->id) }}" id="form_change_img" method="post">
+        					@method('PATCH')
+        					@csrf
+					    	Upload Photo <input type="file" id="change_img" name="profile_img">
+        				</form>
 					</div>
         		</div>
         		<hr>

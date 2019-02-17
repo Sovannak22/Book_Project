@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div class="bg-dark">
     <div style="height:200px" class="container pt-3">
         <div class="row text-light text-justify mt-3">
@@ -35,36 +34,3 @@
         </div>
     </div>
 </div>
-=======
-<!-- Footer -->
-<footer class="page-footer font-small special-color-dark bg-dark pt-4">
-
-        <!-- Footer Elements -->
-        <div class="container">
-    
-          <!--Grid row-->
-          <div class="row">
-    
-            <!--Grid column-->
-            
-            <!--Grid column-->
-    
-            <!--Grid column-->
-            
-            <!--Grid column-->
-    
-          </div>
-          <!--Grid row-->
-    
-        </div>
-        <!-- Footer Elements -->
-    
-        <!-- Copyright -->
-        <div class="footer-copyright text-center text-success py-3">© 2018 Copyright:
-          <a href="https://www.instagram.com/mr_kvang/">The one Everythings</a>
-        </div>
-        <!-- Copyright -->
-    
-      </footer>
-      <!-- Footer -->
->>>>>>> 1cf931eaf44dd3b6d26871206ff32ceae909f599

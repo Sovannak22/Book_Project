@@ -18,10 +18,21 @@ class BookController extends Controller
 
     public function __construct()
     {
+        $bookInCart=0;
         $this->middleware('auth',['except'=>['index','show','booksCategory','search']]);
         $categories = Category::orderBy('category','asc')->get();
         $conditions = Condition::all();
         $fors = ForModel::all();
+        if (Auth::check()){
+            $cart_id=Auth::user()->cart;
+            $books = DB::table('carts')
+            ->join('book_cart','carts.id','book_cart.cart_id')
+            ->join('books','books.id','book_cart.book_id')
+            ->where('carts.id',$cart_id)
+            ->get();
+            $bookInCart = count($books);
+        }
+        View::share('bookInCart', $bookInCart);
         View::share('categories', $categories);
         View::share('conditions', $conditions);
         View::share('fors', $fors);
@@ -94,7 +105,13 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        //
+        $book=Book::find($id);
+        $store=$book->store;
+        $data=array(
+            'book'=>$book,
+            'store'=>$store
+        );
+        return view('books.show')->with($data);
     }
 
     /**
@@ -105,7 +122,9 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        //
+        $book = Book::find($id);
+        
+        return view('books.edit')->with('book',$book);  
     }
 
     /**

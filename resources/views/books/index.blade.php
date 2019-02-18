@@ -99,28 +99,36 @@
                                         <div class="card-body text-center">
                                             <img style="border-radius:0% !important" class="img-fluid" src="storage/book_img/{{$book->book_img}}" alt="card image">
                                             <h4 class="card-title">{{ $book->title }}</h4>
-                                            <p class="card-text">Author: <b>{{ $book->author }}</b></p>
+                                            <p class="card-text">Store: <b>{{ $book->store->store_name }}</b></p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="backside">
                                     <div class="card">
-                                        <div class="card-body text-center mt-4">
+                                        <div class="card-body mt-4">
                                             <h4 class="card-title">{{ $book->title }}</h4>
-                                            <p class="card-text">{{ $book->description }}</p>
+                                            <p class="card-text">By: {{$book->author}}</p>
+                                            <p class="card-text">{{ str_limit($book->description, $limit = 100, $end = '...') }}</p>
+                                            <a href=""><small class="card-text">Store: {{$book->store->store_name}}</small></a>
                                         </div>
                                         <div class="card-footer text-center">
-                                            <button class="btn btn-warning rounded" onclick="alertAddToCart(this)" value="{{$book->id}}">
+                                            @if($book->store->user->id != Auth::user()->id)
+                                            <button class="btn btn-warning rounded py-1" onclick="alertAddToCart(this)" value="{{$book->id}}">
                                                 <i class="fa fa-cart-plus"></i>
                                             </button>
+                                            <a href="" class="btn btn-success rounded"><i class="fa fa-check"></i></a>
+                                            @else 
+                                            <button class="btn btn-danger rounded py-1" onclick="alertAddToCart(this)" value="{{$book->id}}">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                            <a href="" class="btn btn-warning rounded"><i class="fa fa-pencil-square"></i></a>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
-            </div>
+                </div>
                 @endforeach
             @else
                 <div class="container-fluid mt-5">

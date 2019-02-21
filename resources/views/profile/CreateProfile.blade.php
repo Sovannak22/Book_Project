@@ -87,7 +87,9 @@
 			</div>
 		</div>
 	</div>
-	<!-- midle content============================================================= -->
+	<!-- midle content=============================================================== -->
+
+	<!-- store======================================================================= -->
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-2">
@@ -117,6 +119,8 @@
 			</div>
 		</div>
 	</div>
+	<!-- feed=========================================================================== -->
+	<!-- card=========================================================================== -->
 <!-- follower alert===================================================================== -->
 <div class="modal fade" id="followerButton" tabindex="-1" role="dialog" aria-labelledby="followerButton" aria-hidden="true" style="margin-top: 5%;">
 	<div class="modal-dialog" role="document">

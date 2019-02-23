@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Post;
-use App\Comment;
+use App\Model\Post;
+use App\Model\Comment;
 use Auth;
 class PostController extends Controller
 {

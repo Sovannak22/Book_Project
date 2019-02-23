@@ -20,10 +20,6 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<<<<<<< HEAD
-    @include('etc.header')
-    <div id="app">
-=======
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
@@ -76,7 +72,6 @@
             </div>
         </nav>
 
->>>>>>> 9534c6019caff9d1f4843a0b64ff0650849b3079
         <main class="py-4">
             @yield('content')
         </main>

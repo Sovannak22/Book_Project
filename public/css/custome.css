@@ -1,0 +1,10 @@
+.round-img{
+    border-radius: 50%;
+}
+.image-upload > input,.image-upload > * > input,.image-upload> * >a
+{
+    display: none;
+}
+.btn1-active{
+	background-color: #f9ece6;
+}

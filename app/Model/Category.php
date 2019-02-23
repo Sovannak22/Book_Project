@@ -3,11 +3,11 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Model\Book;
 
 class Category extends Model
 {
+    // Relationship between category and books
     public function books(){
-        return $this->belongsToMany(Book::class);
+        return $this->belongsToMany('App\Model\Book');
     }
 }

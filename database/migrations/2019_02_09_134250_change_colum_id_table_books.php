@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RenameBooksColumn extends Migration
+class ChangeColumIdTableBooks extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class RenameBooksColumn extends Migration
      */
     public function up()
     {
-        Schema::table('books', function(Blueprint $table) {
-            $table->integer('sub_cat_id')->unsigned()->change();
-            $table->renameColumn('sub_cat_id', 'category_id');
-            
+        Schema::table('books', function (Blueprint $table) {
+            $table->renameColumn('book_id','id');
         });
     }
 
@@ -27,8 +25,9 @@ class RenameBooksColumn extends Migration
      */
     public function down()
     {
-        Schema::table('books', function(Blueprint $table) {
-            $table->renameColumn('category_id','sub_cat_id');
+        Schema::table('books', function (Blueprint $table) {
+            //
+            $table->renameColumn('id','book_id');
         });
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBookCategoryTable extends Migration
+class AddRemoveCatIdTableBooks extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateBookCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('book_category', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('book_id')->unsigned();
-            $table->integer('category_id')->unsigned();
-            $table->timestamps();
+        Schema::table('books', function (Blueprint $table) {
+            //
+            $table->dropColumn('cat_id');
         });
     }
 
@@ -28,6 +26,8 @@ class CreateBookCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('book_category');
+        Schema::table('books', function (Blueprint $table) {
+            $table->unsignedInteger('cat_id');
+        });
     }
 }

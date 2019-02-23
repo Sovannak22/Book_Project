@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBooksTable extends Migration
+class CreateSoldsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateBooksTable extends Migration
      */
     public function up()
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('solds', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('sub_cat_id');
-            $table->string('title');
-            $table->string('author');
-            $table->text('description');
-            $table->text('img');
+            $table->unsignedInteger('book_id');
+            $table->unsignedInteger('store_id');
+            $table->foreign('book_id')->references('id')->on('books');
+            $table->foreign('store_id')->references('id')->on('stores');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateBooksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('solds');
     }
 }

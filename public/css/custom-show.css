@@ -1,0 +1,38 @@
+.button-like-show {
+  width: 106%;
+  margin-left: -15px;
+	background: #E8E2E0;
+	height: 35px;
+	border: 2px, black;
+  color: black;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 10px;
+}
+.button-share-show {
+  background: #E8E2E0;
+  margin-left: -19.5px;
+  width: 108.5%;
+	border: 2px, black;
+  color: black;
+	height: 35px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 0px;
+}
+.cmt-block {
+  width: 83.7%;
+}
+.user-img-btn-cmt {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	margin-left: 15px;
+}
+.cmt-description {@
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}

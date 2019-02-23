@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Comment;
-use App\Post;
+use App\Model\Comment;
+use App\Model\Post;
 use Auth;
 
 class CommentController extends Controller

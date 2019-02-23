@@ -108,7 +108,8 @@
                                         <div class="card-body mt-4">
                                             <h4 class="card-title">{{ $book->title }}</h4>
                                             <p class="card-text">By: {{$book->author}}</p>
-                                            <p class="card-text">{{ str_limit($book->description, $limit = 100, $end = '...') }}</p>
+                                            <p class="card-text">Category:  @foreach($book->categories as $category) <span class="bg-primary rounded p-1">{{$category->category}}</span> @endforeach</p>
+                                            <p class="card-text">{{ str_limit($book->description, $limit = 50, $end = '...') }}</p>
                                             <a href=""><small class="card-text">Store: {{$book->store->store_name}}</small></a>
                                         </div>
                                         <div class="card-footer text-center">
@@ -121,7 +122,7 @@
                                             <button class="btn btn-danger rounded py-1" onclick="alertAddToCart(this)" value="{{$book->id}}">
                                                 <i class="fa fa-trash"></i>
                                             </button>
-                                            <a href="" class="btn btn-warning rounded"><i class="fa fa-pencil-square"></i></a>
+                                            <a href="/books/{{$book->id}}/edit" class="btn btn-warning rounded"><i class="fa fa-pencil-square"></i></a>
                                             @endif
                                         </div>
                                     </div>

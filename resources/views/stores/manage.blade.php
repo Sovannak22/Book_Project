@@ -78,7 +78,7 @@
                                                 <th>{{$book->author}}</th>
                                                 <th>{{ str_limit($book->description, $limit = 25, $end = '...') }}</th>
                                                 <th>
-                                                    <a class="btn btn-secondary" href="">Edit</a>
+                                                    <a class="btn btn-secondary" href="/books/{{$book->id}}/edit">Edit</a>
                                                 </th>
                                                 <th>
                                                     <a class="btn btn-danger" href="">Delete</a>

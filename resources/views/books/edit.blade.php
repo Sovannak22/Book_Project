@@ -20,8 +20,9 @@
                 <p class="card-text">{{ str_limit($book->description, $limit = 200, $end = '...') }}</p>
             </div>
         </div>
-        <form action="/books" method="post" enctype="multipart/form-data">
+        <form action="{{ route('books.update', $book->id) }}" method="post" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" name="_method" value="PUT">
             {{-- Book title --}}
             <div class="form-group">
                 <div class="form-label" for='title'>

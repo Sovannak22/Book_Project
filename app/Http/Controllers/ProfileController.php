@@ -106,6 +106,10 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $filename="default.jpg";
+        $user = user::find($id);
+        $user->profile_img = $filename;
+        $user->save();
+        return redirect('/profile');
     }
 }

@@ -293,8 +293,12 @@
         		</div>
         		<hr>
         		<div class="row">
-        			<div class="btn btn-danger btn-remove col-12">
-					    Remove Current profile
+        			<div class="btn btn-danger btn-remove col-12 ">
+					    <form action="{{ route('profile.destroy', Auth::user()->id)}}" method="post" id="form_change_img">
+	                 		@csrf
+	                  		@method('DELETE')
+	                  		<button class="btn btn-danger" type="submit" id="change_img">Remove Current Profile</button>
+                		</form>
 					</div>
         		</div>
         	</div>

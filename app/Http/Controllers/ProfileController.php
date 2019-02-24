@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use App\Model\Follow;
+use App\Model\Follow;
 use App\Model\Book;
 use Auth;
+use App\User;
+use Image;
 class ProfileController extends Controller
 {
     /**
@@ -19,6 +21,8 @@ class ProfileController extends Controller
         $username =  \Auth::user()->name;
         $follower = Follow::where('user_id',Auth::user()->id)->count('follower_id');
         $following = Follow::where('follower_id',Auth::user()->id)->count('user_id');
+        // $posts = Post::where('user_id',Auth::user()->id)->sortByDesc('created_at');
+        // $comment = Comment::all();
         return view('profile.CreateProfile',compact('username','follower','following','books')); 
     }
 
@@ -72,10 +76,25 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-        //
+        // $user = User::find($id);
+        // $user->profile_img = $request->get('profile_img');
+        // $user->save();
+
+        if($request->hasFile('profile_img')){
+            $profile_img = $request->file('profile_img');
+            $filename = time() . '.' . $profile_img->getClientOriginalExtension();
+            Image::make($profile_img)->resize(300, 300)->save( public_path('/images/' . $filename ) );
+
+            $user = user::find($id);
+            $user->profile_img = $filename;
+            $user->save();
+        }
+
+       return redirect('/profile');
     }
+    
 
     /**
      * Remove the specified resource from storage.

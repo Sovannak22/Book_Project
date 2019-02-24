@@ -26,3 +26,6 @@ third.addEventListener("click",function(){
 	second.classList.remove("btn1-active");
 	third.classList.add("btn1-active");
 })
+document.getElementById("change_img").onchange = function() {
+    document.getElementById("form_change_img").submit();
+}

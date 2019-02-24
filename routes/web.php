@@ -29,7 +29,6 @@ Route::get('/productCat','BookController@booksCategory');
 Route::resource('stores','StoreController');
 Route::get('/managestore/{id}','StoreController@manage');
 
-
 // Cart Route
 Route::get('/addBookToCart','CartController@addBookToCart');
 Route::get('/cart','CartController@show');

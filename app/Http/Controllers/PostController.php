@@ -31,8 +31,8 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-
-        return view('posts.show', compact('post'));
+        $comment = Comment::all();    
+        return view('posts.show', compact(['post', 'comment']));
     }
     public function like($id)
     {

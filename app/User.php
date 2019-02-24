@@ -28,6 +28,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function store(){
+        return $this->hasOne('App\Model\Store');
+    }
+
+    public function cart(){
+        return $this->hasOne('App\Model\Cart');
+    }
 
     public function posts()
     {

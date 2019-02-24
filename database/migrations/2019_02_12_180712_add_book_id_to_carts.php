@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddGenderToUsers extends Migration
+class AddBookIdToCarts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class AddGenderToUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function($table) {
-        $table->string('gender');
-        $table->string('profile_img')->default('default.jpg');
-    });
+        Schema::table('carts', function (Blueprint $table) {
+            $table->integer('book_id')->unsigned();
+        });
     }
 
     /**
@@ -26,9 +25,8 @@ class AddGenderToUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('gender');
-            $table->dropColumnd('profile_img');
+        Schema::table('carts', function (Blueprint $table) {
+            $table->dropColumn('book_id');
         });
     }
 }

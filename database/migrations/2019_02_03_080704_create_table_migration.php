@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddGenderToUsers extends Migration
+class CreateTableMigration extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class AddGenderToUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function($table) {
-        $table->string('gender');
-        $table->string('profile_img')->default('default.jpg');
-    });
+        Schema::create('conditions', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('condition');
+        });
     }
 
     /**
@@ -26,9 +26,6 @@ class AddGenderToUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('gender');
-            $table->dropColumnd('profile_img');
-        });
+        Schema::dropIfExists('table_migration');
     }
 }

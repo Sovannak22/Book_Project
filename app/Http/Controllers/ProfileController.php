@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Follow;
 use App\Model\Book;
+use App\Model\Post;
+use App\Model\Comment;
 use Auth;
 use App\User;
 use Image;
@@ -21,9 +23,9 @@ class ProfileController extends Controller
         $username =  \Auth::user()->name;
         $follower = Follow::where('user_id',Auth::user()->id)->count('follower_id');
         $following = Follow::where('follower_id',Auth::user()->id)->count('user_id');
-        // $posts = Post::where('user_id',Auth::user()->id)->sortByDesc('created_at');
-        // $comment = Comment::all();
-        return view('profile.CreateProfile',compact('username','follower','following','books')); 
+        $posts = Post::where('user_id',Auth::user()->id);
+        $comment = Comment::all();
+        return view('profile.CreateProfile',compact('username','follower','following','books','posts','comment')); 
     }
 
     /**

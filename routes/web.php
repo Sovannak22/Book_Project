@@ -18,17 +18,16 @@
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::resource('profile', 'ProfileController'); 
 
 Route::resource('profile', 'ProfileController');
 Route::resource('books','BookController');
-    Route::get('/missstore','BookController@erroMissingStore');
-    Route::get('/searchBooks','BookController@search');
-    // Book by ajax with category id
-    Route::get('/productCat','BookController@booksCategory');
+Route::get('/missstore','BookController@erroMissingStore');
+Route::get('/searchBooks','BookController@search');
+// Book by ajax with category id
+Route::get('/productCat','BookController@booksCategory');
 Route::resource('stores','StoreController');
-    Route::get('/managestore/{id}','StoreController@manage');
-
+Route::get('/managestore/{id}','StoreController@manage');
 
 // Cart Route
 Route::get('/addBookToCart','CartController@addBookToCart');

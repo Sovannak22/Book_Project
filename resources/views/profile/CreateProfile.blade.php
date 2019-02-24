@@ -90,7 +90,7 @@
 	<!-- midle content=============================================================== -->
 
 	<!-- store======================================================================= -->
-	<!-- <div class="container-fluid">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-2">
 				
@@ -118,9 +118,9 @@
 				
 			</div>
 		</div>
-	</div> -->
+	</div>
 	<!-- feed=========================================================================== -->
-	<div>
+	<!-- <div>
 	@foreach ($posts as $post)
             <div class="d-flex justify-content-center">
               <div class="post-status col-10">
@@ -189,7 +189,7 @@
               </div>
             </div>
           @endforeach
-	</div>
+	</div> -->
 	<!-- card=========================================================================== -->
 <!-- follower alert===================================================================== -->
 <div class="modal fade" id="followerButton" tabindex="-1" role="dialog" aria-labelledby="followerButton" aria-hidden="true" style="margin-top: 5%;">

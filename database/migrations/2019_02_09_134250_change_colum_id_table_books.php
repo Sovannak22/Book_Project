@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddDeleteSubcatTable extends Migration
+class ChangeColumIdTableBooks extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddDeleteSubcatTable extends Migration
      */
     public function up()
     {
-        Schema::table('sub_categorie', function (Blueprint $table) {
-            Schema::dropIfExists('sub_categories');
+        Schema::table('books', function (Blueprint $table) {
+            $table->renameColumn('book_id','id');
         });
     }
 
@@ -25,8 +25,9 @@ class AddDeleteSubcatTable extends Migration
      */
     public function down()
     {
-        Schema::table('sub_categorie', function (Blueprint $table) {
+        Schema::table('books', function (Blueprint $table) {
             //
+            $table->renameColumn('id','book_id');
         });
     }
 }

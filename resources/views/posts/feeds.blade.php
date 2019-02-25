@@ -60,7 +60,9 @@
                             <i class="fas fa-thumbs-up"></i>
                         </div>
                         <div class="like-num">
-                          <p>1.2 k</p>
+                          <p>
+                            1.2k
+                          </p>
                         </div>
                       </div>
                     </div>

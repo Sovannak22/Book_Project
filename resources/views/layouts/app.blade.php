@@ -12,13 +12,11 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/custome.js') }}"></script>
-    
+    <script src="{{ asset('js/app.js') }}" ></script>
     <!-- fontawesome css -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <script src="{{ asset('js/app.js') }}" ></script>
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/custome.js') }}" defer></script>
-    <script src="{{ asset('js/app.js') }}" ></script>
+    <script src="{{ asset('js/custome.js') }}"></script>
 
     <!-- fontawesome css -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -33,6 +31,9 @@
     <link rel="stylesheet" href="{{ asset('css/custome.css') }}">
     <link href="{{ asset('css/select2.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/book_page.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custome.css') }}" rel="stylesheet">
     @yield('CSS')
 
 </head>

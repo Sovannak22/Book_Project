@@ -90,7 +90,7 @@
 	<!-- midle content=============================================================== -->
 
 	<!-- store======================================================================= -->
-	<div class="container-fluid">
+	<div class="container-fluid" id="store_content">
 		<div class="row">
 			<div class="col-2">
 				
@@ -120,76 +120,35 @@
 		</div>
 	</div>
 	<!-- feed=========================================================================== -->
-	<!-- <div>
-	@foreach ($posts as $post)
-            <div class="d-flex justify-content-center">
-              <div class="post-status col-10">
-                <div class="post">
-                  <div class="row">
-                    <div class="col">
-                      <div class="user-btn">
-                        <a href="#">
-                          <div class="row">
-                            <img src="/images/cats_blue_eyes_animals_pets_4288x2848.jpg" class="user-img-btn" alt=" ">
-                            <p class="user-name-btn">
-                              {{ $post->user->name }}
-                            </p>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="col-3">
-                      @if (Auth::user()->id != $post->user->id)
-                        <button type="button" class="follow-btn btn btn-primary" name="button-follow">
-                          + follow
-                        </button>
-                      @endif
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col status-post">
-                      <p class="status-text">
-                        {{ $post->description }}
-                      </p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col">
-                      <div class="row like-count">
-                        <div class="">
-                            <i class="fas fa-thumbs-up"></i>
-                        </div>
-                        <div class="like-num">
-                          <p>1.2 k</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-2">
-                      <p>{{ $comment->where('post_id', $post->id)->count() }}
-                        @if ($comment->where('post_id', $post->id)->count() <= 1)
-                          comment
-                        @else
-                          comments
-                        @endif
-                      </p>
-                    </div>
-                  </div>
-                  <div class="row cmt-share-btn-group">
-                    <div class="col">
-                      <a class="like-btn btn btn-secondary" href="{{ route('feeds.like', $post->id) }}">like</a>
-                    </div>
-                    <div class="col">
-                      <a class="comment-btn btn btn-secondary" href="{{ route('feeds.show', $post->id) }}">comment</a>
-                    </div>
-                    <div class="col">
-                      <a class="share-btn btn btn-secondary">share</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          @endforeach
-	</div> -->
+	<div class="container-fluid" id="feed_content">
+		<div class="row">
+			<div class="col-2">
+				
+			</div>
+			<div class="col-8">
+				<div class="row" style="margin-bottom : 10px; background:red;">
+					@foreach($books as $book)
+					{{-- <div class="col-4" style="height:350px">
+						<div class="card">
+						  	<img class="card-img-top" src="images/{{$book->book_img}}" alt="Card image cap" style="width:75%;height:200px;margin: 0 auto;">
+						  	<div class="card-body">
+						    	<h5 class="card-title">{{$book->title}}</h5>
+						    	<p class="card-text">{{str_limit($book->description,$limit = 100, $end = '...')}}</p>
+						    	<div style="text-align: center;">
+						    		<!-- <a href="#" class="btn btn-success">Edit</a>
+						    		<a href="#" class="btn btn-danger">delete</a> -->
+						    	</div>
+						  	</div>
+						</div>
+					</div> --}}
+					@endforeach
+				</div>
+			</div>
+			<div class="col-2">
+				
+			</div>
+		</div>
+	</div>
 	<!-- card=========================================================================== -->
 <!-- follower alert===================================================================== -->
 <div class="modal fade" id="followerButton" tabindex="-1" role="dialog" aria-labelledby="followerButton" aria-hidden="true" style="margin-top: 5%;">
@@ -293,7 +252,13 @@
         		</div>
         		<hr>
         		<div class="row">
-							<a href="{{route('profile.destroy',Auth::user()->id)}}" name="delete_profile" class="btn btn-danger btn-remove col-12">Remove Current Profile</a>
+        			<div class="col-12 ">
+					    <form action="{{ route('profile.destroy', Auth::user()->id)}}" method="post" id="form_change_img" >
+	                 		@csrf
+	                  		@method('DELETE')
+	                  		<button class="btn btn-danger btn-remove col-12" type="submit" id="change_img">Remove Current Profile</button>
+                		</form>
+					</div>
         		</div>
         	</div>
       </div>

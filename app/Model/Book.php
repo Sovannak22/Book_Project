@@ -25,7 +25,7 @@ class Book extends Model
     }
     // RELATIONSHIP BETWEEN BOOKS AND FOR
     public function for(){
-        return $this->belongsTo('App\Model\For');
+        return $this->belongsTo('App\Model\ForModel');
     }
 
     public function sold(){

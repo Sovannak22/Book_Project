@@ -29,6 +29,7 @@ Route::resource('stores','StoreController');
 Route::get('/managestore/{id}','StoreController@manage');
 
 // Cart Route
+Route::get('/create_cart','CartController@create_cart');
 Route::get('/addBookToCart','CartController@addBookToCart');
 Route::get('/cart','CartController@show');
 

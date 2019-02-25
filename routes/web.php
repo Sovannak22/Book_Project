@@ -20,6 +20,8 @@ Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('profile', 'ProfileController')->middleware('auth');
+Route::get('/editprofile/edit/{id}', 'EditProfileController@edit')->name('editprofile.edit');
+Route::post('/updateprofile/{user}', 'EditProfileController@update')->name('editprofile.update');
 Route::resource('books','BookController');
 Route::get('/missstore','BookController@erroMissingStore');
 Route::get('/searchBooks','BookController@search');
@@ -49,3 +51,4 @@ Route::get('/like/{id}', 'PostController@like')->name('feeds.like');
 
 Route::post('/comment/store', 'CommentController@store')->name('comment.add');
 Route::post('/reply/store', 'CommentController@replyStore')->name('reply.add');
+

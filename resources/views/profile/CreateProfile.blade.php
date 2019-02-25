@@ -30,12 +30,12 @@
 				</div>
 <!-- description--------------------------------------------------------------------------------------->
 				<div class="row">
-					<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
-					</p>
+					<p>{{Auth::user() ->bio}}</p>
 				</div>
 			</div>
 			<div class="col-2">
-				<button style="background-color: green" class="btn btn-success">Edit</button>
+				<a href="{{ route('editprofile.edit',Auth::user()->id)}}" class="btn btn-success">Edit</a>
+				<!-- <button style="background-color: green" class="btn btn-success">Edit</button> -->
 			</div>
 		</div>
 	</div>
@@ -161,7 +161,7 @@
 					                      <p class="status-text">
 					                        {{ $post->description }}
 					                      </p>
-															</div>.
+										</div>.
 															
 					                  </div>
 					                  <div class="row">

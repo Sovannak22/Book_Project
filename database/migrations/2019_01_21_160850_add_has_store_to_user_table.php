@@ -27,6 +27,7 @@ class AddHasStoreToUserTable extends Migration
     {
         Schema::table('user', function (Blueprint $table) {
             //
+            $table->dropColumn('has_store');
         });
     }
 }

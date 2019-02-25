@@ -19,8 +19,7 @@ Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
-
-Route::resource('profile', 'ProfileController');
+Route::resource('profile', 'ProfileController')->middleware('auth');
 Route::resource('books','BookController');
 Route::get('/missstore','BookController@erroMissingStore');
 Route::get('/searchBooks','BookController@search');

@@ -33,7 +33,7 @@ Route::get('/cart','CartController@show');
 
 
 Route::get('/test',function(){
-    return view('layouts.store_2');
+    return view('books.show');
 });
 
 

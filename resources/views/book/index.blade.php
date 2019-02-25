@@ -74,17 +74,7 @@
                                 </div>
                             </div>
                         </div>
-{{-- 
-                <div class="card" style="width: 10rem;">
-                    <img class="card-img-top img-thumbnail" src="storage/book_img/{{ $book->img }}" alt="Card image cap">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">{{ $book->title }}</h5>
 
-                    </div>
-                    <div class="card-footer text-center">
-                        <a style="text-decoration: none;" href="#">View Detail</a>
-                    </div>
-                </div> --}}
 
             </div>
             @endforeach($books as $book)

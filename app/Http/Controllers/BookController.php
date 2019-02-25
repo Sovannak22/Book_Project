@@ -18,10 +18,21 @@ class BookController extends Controller
 
     public function __construct()
     {
+        $bookInCart=0;
         $this->middleware('auth',['except'=>['index','show','booksCategory','search']]);
         $categories = Category::orderBy('category','asc')->get();
         $conditions = Condition::all();
         $fors = ForModel::all();
+        if (Auth::check()){
+            $cart_id=Auth::user()->cart;
+            $books = DB::table('carts')
+            ->join('book_cart','carts.id','book_cart.cart_id')
+            ->join('books','books.id','book_cart.book_id')
+            ->where('carts.id',$cart_id)
+            ->get();
+            $bookInCart = count($books);
+        }
+        View::share('bookInCart', $bookInCart);
         View::share('categories', $categories);
         View::share('conditions', $conditions);
         View::share('fors', $fors);
@@ -94,7 +105,13 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        //
+        $book=Book::find($id);
+        $store=$book->store;
+        $data=array(
+            'book'=>$book,
+            'store'=>$store
+        );
+        return view('books.show')->with($data);
     }
 
     /**
@@ -105,7 +122,9 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        //
+        $book = Book::find($id);
+        
+        return view('books.edit')->with('book',$book);  
     }
 
     /**
@@ -117,7 +136,26 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $book = Book::find($id);
+        $store_id = Auth::user()->store->id;
+        $book->title=$request->get('title');
+        $book->author=$request->get('author');
+        $book->description=$request->get('description');
+        $book->for_id=$request->get('for');
+        $book->condition_id=$request->get('condition');
+        $book->price=$request->get('price');
+        if($request->hasFile('book_img')){
+            $book_img = $request->file('book_img');
+            $fileName = time().'.'.$book_img->getClientOriginalExtension();
+            Image::make($book_img)->resize(250,350)->save(public_path('/storage/book_img/'.$fileName));
+            $book->book_img=$fileName;
+        }
+        $book->store_id=$store_id;
+        $book->save();
+        DB::table('book_category')->where('book_id', $id)->delete();
+        $book->categories()->sync($request->get('categories'));
+        return redirect("/managestore/{$store_id}");
+        
     }
 
     /**
@@ -128,7 +166,10 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $store_id = Auth::user()->store->id;
+        $book=Book::find($id);
+        $book->delete();
+        return redirect("/managestore/{$store_id}");
     }
 
     public function erroMissingStore(){
@@ -150,11 +191,9 @@ class BookController extends Controller
             $books = Book::all();
         }
         else{
-            $books = DB::table('books')
-                ->join('book_category','books.id','book_category.book_id')
-                ->join('categories','categories.id','book_category.category_id')
-                ->where('categories.id',$category_id)
-                ->get();
+            $category = Category::find($category_id);
+            $books = $category->books()->get();
+            // dd($books);
         }
         return view('books.book_cat_show')->with('books',$books);
     }

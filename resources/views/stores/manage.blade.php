@@ -20,19 +20,21 @@
                 </div>
             </div>
             <div class="row col-lg-8 col-md-8 col-sm-12 col-12">
-                @if($bookSide>0)
-                    <div style="height:10rem" class="col-lg-{{$bookSide}} col-md-{{$bookSide}} col-sm-{{$bookSide}} col-{{$bookSide}} bg-primary pt-5">
-                        <h1 class="text-center">
-                            Book: {{count($store->books)}}
-                        </h1>
-                    </div>
-                @endif
-                @if((12-$bookSide)>0)
-                    <div style="height:10rem" class="rounded col-lg-{{12-$bookSide}} col-md-{{12-$bookSide}} col-sm-{{12-$bookSide}} col-{{12-$bookSide}} bg-success pt-5">
-                        <h1 class="text-center">
-                            Free: {{$store->store_type->amount - count($store->books)}}
-                        </h1>
-                    </div>
+                @if(count($books)>0)
+                    @if($bookSide>0)
+                        <div style="height:10rem" class="col-lg-{{$bookSide}} col-md-{{$bookSide}} col-sm-{{$bookSide}} col-{{$bookSide}} bg-primary pt-5">
+                            <h1 class="text-center">
+                                Book: {{count($store->books)}}
+                            </h1>
+                        </div>
+                    @endif
+                    @if((12-$bookSide)>0)
+                        <div style="height:10rem" class="rounded col-lg-{{12-$bookSide}} col-md-{{12-$bookSide}} col-sm-{{12-$bookSide}} col-{{12-$bookSide}} bg-success pt-5">
+                            <h1 class="text-center">
+                                Free: {{$store->store_type->amount - count($store->books)}}
+                            </h1>
+                        </div>
+                    @endif
                 @endif
             </div>
         </div>
@@ -78,7 +80,7 @@
                                                 <th>{{$book->author}}</th>
                                                 <th>{{ str_limit($book->description, $limit = 25, $end = '...') }}</th>
                                                 <th>
-                                                    <a class="btn btn-secondary" href="">Edit</a>
+                                                    <a class="btn btn-secondary" href="/books/{{$book->id}}/edit">Edit</a>
                                                 </th>
                                                 <th>
                                                     <a class="btn btn-danger" href="">Delete</a>

@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Model\Store;
 use App\Model\Book;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use View;
 
 class StoreController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth',['except'=>['index','show']]);
+        // View::share('bookInCart', $bookInCart);
         
     }
     /**
@@ -83,16 +85,24 @@ class StoreController extends Controller
     public function manage($id){
 
         if (Auth::user()->has_store==1){
-            $bookInStore=count(Store::find($id)->books);
-            $bookPercentage=($bookInStore)/(Store::find($id)->store_type->amount);
-            $bookSide=0;
             $books=Store::find($id)->books;
-            if ($bookPercentage>0.1){
-                $bookSide=round($bookPercentage/$bookPercentage);
+            if(count(Store::find($id)->books)>0){
+                $bookInStore=count(Store::find($id)->books);
+                $bookPercentage=( ($bookInStore)/(Store::find($id)->store_type->amount) )*100;
+                $bookSide=0;
+                if ($bookPercentage>0.1){
+                    $bookSide=round($bookPercentage/12);
+                }
+                $data=array(
+                    'store' => (Store::find($id)),
+                    'bookSide' => $bookSide,
+                    'books' => $books,
+                    
+                );
             }
             $data=array(
                 'store' => (Store::find($id)),
-                'bookSide' => $bookSide,
+                'bookSide' => 5,
                 'books' => $books,
                 
             );

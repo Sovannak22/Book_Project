@@ -29,6 +29,15 @@
                         </li>
                     @endif
                 @else   
+                    {{-- @php
+                    $cart_id=Auth::user()->cart;
+                    $books = DB::table('carts')
+                    ->join('book_cart','carts.id','book_cart.cart_id')
+                    ->join('books','books.id','book_cart.book_id')
+                    ->where('carts.id',$cart_id)
+                    ->get();
+                    $bookInCart = count($books);
+                    @endphp  --}}
                     <li class="nav-item dropdown">
                         
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

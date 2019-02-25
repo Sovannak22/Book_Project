@@ -161,7 +161,8 @@
 					                      <p class="status-text">
 					                        {{ $post->description }}
 					                      </p>
-					                    </div>
+															</div>.
+															
 					                  </div>
 					                  <div class="row">
 					                    <div class="col">

@@ -94,7 +94,13 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        //
+        $book=Book::find($id);
+        $store=$book->store;
+        $data=array(
+            'book'=>$book,
+            'store'=>$store
+        );
+        return view('books.show')->with($data);
     }
 
     /**

@@ -293,9 +293,7 @@
         		</div>
         		<hr>
         		<div class="row">
-        			<div class="btn btn-danger btn-remove col-12">
-					    Remove Current profile
-					</div>
+							<a href="{{route('profile.destroy',Auth::user()->id)}}" name="delete_profile" class="btn btn-danger btn-remove col-12">Remove Current Profile</a>
         		</div>
         	</div>
       </div>

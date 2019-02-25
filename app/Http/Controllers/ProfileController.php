@@ -23,7 +23,7 @@ class ProfileController extends Controller
         $username =  \Auth::user()->name;
         $follower = Follow::where('user_id',Auth::user()->id)->count('follower_id');
         $following = Follow::where('follower_id',Auth::user()->id)->count('user_id');
-        $posts = Post::all()->where('user_id',Auth::user()->id);
+        $posts = Post::all()->where('user_id',Auth::user()->id)->sortByDesc('created_at');
         $comment = Comment::all();
         return view('profile.CreateProfile',compact('username','follower','following','books','posts','comment')); 
     }

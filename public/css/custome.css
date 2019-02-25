@@ -57,3 +57,107 @@
     cursor: inherit;
     display: block;
 }
+
+
+.feeds {
+  background: #343A40;
+}
+.upload-group {
+    border-radius: 10px;
+    margin-top: 10px;
+  background: gray;
+    width: 80%;
+    height: 90px;
+}
+.upload-input {
+    margin-left: 10px;
+    margin-top: 10px;
+    border: none;
+}
+.post-status {
+    margin-top: 10px;
+    background: #E8E2E0;
+    border-radius: 10px;
+    height: auto;
+}
+.user-btn {
+    width: 190px;
+    height: 60px;
+    margin-left: 12px;
+    margin-top: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.user-name-btn {
+    margin-left: 10px;
+    font-size: 20pt;
+}
+.user-img-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    margin-left: 15px;
+}
+.follow-btn {
+    margin-left: 40px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+.status-post {
+    margin-left: 10%;
+}
+.status-text {
+    font-size: 15pt;
+}
+.like-btn {
+    background: #E8E2E0;
+    width: 113%;
+    height: 35px;
+    color: black;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 10px;
+    margin-left: -15px;
+}
+.like-btn:hover {
+    color: white !important;
+}
+.comment-btn {
+    background: #E8E2E0;
+    margin-left: -11px;
+    width: 113%;
+    height: 35px;
+    color: black;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.share-btn {
+    background: #E8E2E0;
+    margin-left: -7px;
+    width: 109%;
+    height: 35px;
+    color: black;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 0px;
+}
+.share-btn:hover {
+    color: white !important;
+}
+.cmt-share-btn-group {
+    margin-top: -10px;
+}
+.like-count {
+    margin-left: 15px;
+}
+.like-num {
+    margin-left: 10px;
+}
+.comment-toggle {
+    background: green;
+}

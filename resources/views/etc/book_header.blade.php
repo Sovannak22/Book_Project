@@ -13,7 +13,7 @@
         <a class="nav-link" href="/stores">Store</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="post.html">Blog</a>
+        <a class="nav-link" href="/">Blog</a>
         </li>
         <li class="nav-item">
         <a class="nav-link" href="contact.html">Profile</a>

@@ -19,6 +19,8 @@
                     </h4>
                 </div>
             </div>
+            
+            @if (count($store->books)>0)
             <div class="row col-lg-8 col-md-8 col-sm-12 col-12">
                 @if($bookSide>0)
                     <div style="height:10rem" class="col-lg-{{$bookSide}} col-md-{{$bookSide}} col-sm-{{$bookSide}} col-{{$bookSide}} bg-primary pt-5">
@@ -35,6 +37,15 @@
                     </div>
                 @endif
             </div>
+            @else
+            <div class="row col-lg-8 col-md-8 col-sm-12 col-12">
+                <div style="height:10rem" class="bg-success col-lg-12 col-md-12 pt-5">
+                    <h1 class="text-center">
+                        Free: {{$store->store_type->amount - count($store->books)}}
+                    </h1>
+                </div>
+            </div>
+            @endif
         </div>
         <div>
             <div class="row">

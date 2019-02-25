@@ -84,16 +84,24 @@ class StoreController extends Controller
 
         if (Auth::user()->has_store==1){
             $bookInStore=count(Store::find($id)->books);
-            $bookPercentage=($bookInStore)/(Store::find($id)->store_type->amount);
             $bookSide=0;
-            $books=Store::find($id)->books;
-            if ($bookPercentage>0.1){
-                $bookSide=round($bookPercentage/$bookPercentage);
+            if ($bookInStore > 0){
+                $bookPercentage=($bookInStore)/(Store::find($id)->store_type->amount);
+                $books=Store::find($id)->books;
+                if ($bookPercentage>0.1){
+                    $bookSide=round($bookPercentage/$bookPercentage);
+                }
+                $data=array(
+                    'store' => (Store::find($id)),
+                    'bookSide' => $bookSide,
+                    'books' => $books,
+                    
+                );
+                return view('stores.manage')->with($data);
             }
             $data=array(
                 'store' => (Store::find($id)),
                 'bookSide' => $bookSide,
-                'books' => $books,
                 
             );
             return view('stores.manage')->with($data);

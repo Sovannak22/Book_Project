@@ -8,8 +8,11 @@
   margin-left: 25px;
   margin-top: -15px;
 }
+.update-btn {
+	margin-left: 10px;
+}
 .feeds {
-  background: #343A40;
+  /* background: #343A40; */
 }
 .upload-group {
 	border-radius: 10px;
@@ -21,6 +24,11 @@
 .upload-input {
 	margin-left: 10px;
 	margin-top: 10px;
+	border: none;
+}
+.update-input {
+	padding-left: 10px;
+	width: 85%;
 	border: none;
 }
 .post-status {
@@ -55,6 +63,11 @@
 }
 .status-post {
 	margin-left: 10%;
+}
+.status-post-update {
+	margin-top: 20px;
+	margin-left: :20px;
+	margin-bottom: 20px;
 }
 .status-text {
 	font-size: 15pt;

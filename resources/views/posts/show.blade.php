@@ -14,7 +14,10 @@
 @endsection
 
 @section('content')
+<?php
 
+  $users=$post->users()->get();
+  $count = count($users);?>
 <div class="container">
   <div class="row justify-content-center">
     <div class="post-status col-10">
@@ -54,7 +57,7 @@
                   <i class="fas fa-thumbs-up"></i>
               </div>
               <div class="like-num">
-                <p>1.2 k</p>
+                <p>{{$count}}</p>
               </div>
             </div>
           </div>

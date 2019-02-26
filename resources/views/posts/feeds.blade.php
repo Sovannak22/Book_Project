@@ -11,7 +11,7 @@
   <div class="container post-feeds">
 	  <div class="row">
 	    <div class="col d-flex justify-content-center">
-        <div class="container feeds">
+        <div class="container">
           <div class="d-flex justify-content-center">
             <div class="form-group row upload-group col-10">
               <form class="" enctype="multipart/form-data" action="{{ route('feeds.store') }}" method="POST">
@@ -22,27 +22,29 @@
             </div>
           </div>
           @foreach ($posts as $post)
+            <?php
+            $users=$post->users()->get();
+            $count = count($users);?>
             <div class="d-flex justify-content-center">
               <div class="post-status col-10">
                 <div class="post">
                   <div class="row">
-                    <div class="col">
-                      <div class="user-btn">
-                        <a href="#">
-                          <div class="row">
-                            <img src="/images/cats_blue_eyes_animals_pets_4288x2848.jpg" class="user-img-btn" alt=" ">
-                            <p class="user-name-btn">
-                              {{ $post->user->name }}
-                            </p>
-                          </div>
+                    <div class="col-11">
+                      <div class="row">
+                        <a href="{{route('profile.index', $post->user_id)}}">
+                          <img src="/images/cats_blue_eyes_animals_pets_4288x2848.jpg" style="width:50px;height:50px;margin-left:15px;margin-top:15px;border-radius: 50%;" alt="">
+                        </a>
+                        <a class="" href="{{route('profile.index', 'id='.$post->user_id)}}">
+                          <p style="margin-top:20px;margin-left: 10px;font-size:20pt;">{{$post->user->name}}</p>
                         </a>
                       </div>
                     </div>
-                    <div class="col-3">
-                      @if (Auth::user()->id != $post->user->id)
-                        <button type="button" class="follow-btn btn btn-primary" name="button-follow">
-                          + follow
-                        </button>
+                    <div class="col-1">
+                      @if (Auth::user()->id == $post->user->id)
+                        <div class="col-5">
+                          <a href="{{route('post.edit', $post->id)}}" class="btn"><i class="far fa-edit"></i></a>
+                          <a href="{{route('post.delete', $post->id)}}" class="btn"><i class="far fa-trash-alt"></i></a>
+                        </div>
                       @endif
                     </div>
                   </div>
@@ -61,7 +63,7 @@
                         </div>
                         <div class="like-num">
                           <p>
-                            1.2k
+                            {{$count}}
                           </p>
                         </div>
                       </div>

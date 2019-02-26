@@ -46,6 +46,9 @@ Route::get('/', 'PostController@index')->name('feeds')->middleware('auth');
 Route::post('/store', 'PostController@store')->name('feeds.store');
 Route::get('/post/{id}', 'PostController@show')->name('feeds.show');
 Route::get('/like/{id}', 'PostController@like')->name('feeds.like');
+Route::get('/edit/{id}', 'PostController@edit')->name('post.edit');
+Route::post('/update/{id}', 'PostController@update')->name('post.update');
+Route::get('/delete/{id}', 'PostController@destroy')->name('post.delete');
 
 Route::post('/comment/store', 'CommentController@store')->name('comment.add');
 Route::post('/reply/store', 'CommentController@replyStore')->name('reply.add');

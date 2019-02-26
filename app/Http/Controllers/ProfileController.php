@@ -17,15 +17,20 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::all();
-        $username =  \Auth::user()->name;
+        $id=$request->get('id');
+        if (count(User::find($id)->store)>0){
+          $books = User::find($id)->store->books;
+        }
+        
+        dd($books);
+        $username =  User::find($id);
         $follower = Follow::where('user_id',Auth::user()->id)->count('follower_id');
         $following = Follow::where('follower_id',Auth::user()->id)->count('user_id');
         $posts = Post::all()->where('user_id',Auth::user()->id)->sortByDesc('created_at');
         $comment = Comment::all();
-        return view('profile.CreateProfile',compact('username','follower','following','books','posts','comment')); 
+        return view('profile.CreateProfile',compact('username','follower','following','books','posts','comment'));
     }
 
     /**
@@ -35,7 +40,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-      
+
     }
 
     /**
@@ -96,7 +101,7 @@ class ProfileController extends Controller
     //    return redirect('/profile');
         return back();
     }
-    
+
 
     /**
      * Remove the specified resource from storage.

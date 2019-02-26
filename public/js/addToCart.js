@@ -9,7 +9,7 @@ function alertAddToCart(button){
         if (willAdd) {
             var id=$(button).val();
             $.ajax({
-                type: 'get',
+                type: 'post',
                 url: "/addBookToCart",
                 data: 'book_id=' + id,
                 success:function(responce){

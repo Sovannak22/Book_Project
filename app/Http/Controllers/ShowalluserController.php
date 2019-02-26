@@ -25,8 +25,11 @@ class ShowalluserController extends Controller
         // dd($follows);
         return view('Show_user.ShowAllUser', compact('users','follows'));
     }
-    public function follow()
+    public function follow($id)
     {
-        
+       $follow = DB::table('follows');
+       $follow->user_id=$id;
+       $follow->follower_id=Auth::user()->id;
+       $follow->save();
     }
 }

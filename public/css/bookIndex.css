@@ -1,9 +1,6 @@
 .card-img-top{
     width: 100%;
-<<<<<<< HEAD
-=======
     height: 15rem; 
->>>>>>> master
     object-fit: cover;
     
     
@@ -177,13 +174,7 @@ section .section-title {
     color: #fff !important;
 }
 .backside .card button {
-<<<<<<< HEAD
-    font-size: 19px;
-    color: #007b5e !important;
-}
-=======
     color: #fff !important;
->>>>>>> master
 
 }
 .frontside .card .card-title,
@@ -192,14 +183,9 @@ section .section-title {
 }
 
 .frontside .card .card-body img {
-<<<<<<< HEAD
     width: 75%;
-    height: 15rem;
-=======
-    width: 120px;
-    height: 10rem;
+    height: 100%;
     margin-bottom:5rem;
->>>>>>> master
     border-radius: 50%;
 }
 

@@ -155,10 +155,6 @@ class BookController extends Controller
         DB::table('book_category')->where('book_id', $id)->delete();
         $book->categories()->sync($request->get('categories'));
         return redirect("/managestore/{$store_id}");
-<<<<<<< HEAD
-        
-=======
->>>>>>> master
     }
 
     /**

@@ -28,8 +28,12 @@
           <input type="text" class="form-control" name="name" value={{ $user->name }} />
         </div>
         <div class="form-group">
+          <label for="name">Email:</label>
+          <input type="text" class="form-control" name="email" value={{ $user->email }} />
+        </div>
+        <div class="form-group">
           <label for="price">BIO :</label>
-          <textarea name="Text1" cols="40" rows="5" class="form-control" name="bio">{{ $user->bio }}</textarea>
+          <textarea cols="40" rows="5" class="form-control" name="bio" >{{ $user->bio }}</textarea>
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
       </form>

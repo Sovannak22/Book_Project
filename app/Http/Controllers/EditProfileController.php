@@ -23,12 +23,12 @@ class EditProfileController extends Controller
 	{
 	      $request->validate([
 	        'name'=>'required',
-	        'bio'=> 'required',
 	      ]);
 
 	      $user = User::find($id);
 	      $user->name = $request->get('name');
-	      $user->bio = $request->get('bio');
+		  $user->bio = $request->get('bio');
+		  $user->email= $request->get('email');
 	      $user->save();
 
 	      return redirect('/profile');

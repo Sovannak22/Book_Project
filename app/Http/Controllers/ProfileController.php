@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\Follow;
 use App\Model\Book;
 use App\Model\Post;
+use App\Model\Store;
 use App\Model\Comment;
 use Auth;
 use App\User;
@@ -17,20 +18,18 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index($id)
     {
-        $id=$request->get('id');
-        if (count(User::find($id)->store)>0){
-          $books = User::find($id)->store->books;
-        }
-        
-        dd($books);
-        $username =  User::find($id);
-        $follower = Follow::where('user_id',Auth::user()->id)->count('follower_id');
-        $following = Follow::where('follower_id',Auth::user()->id)->count('user_id');
-        $posts = Post::all()->where('user_id',Auth::user()->id)->sortByDesc('created_at');
+        $user =  User::find($id);
+        $store = Store::where('user_id', $user->id)->first();
+        // dd($store->id);
+        $books = Book::all()->where('store_id',$store->id);
+        // dd($books);
+        $follower = Follow::where('user_id', $user->id)->count('follower_id');
+        $following = Follow::where('follower_id', $user->id)->count('user_id');
+        $posts = Post::all()->where('user_id', $user->id)->sortByDesc('created_at');
         $comment = Comment::all();
-        return view('profile.CreateProfile',compact('username','follower','following','books','posts','comment'));
+        return view('profile.CreateProfile',compact('user','follower','following','books','posts','comment'));
     }
 
     /**
@@ -38,10 +37,10 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-
-    }
+    // public function create()
+    // {
+    //
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -49,10 +48,10 @@ class ProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    // public function store(Request $request)
+    // {
+    //     //
+    // }
 
     /**
      * Display the specified resource.
@@ -60,10 +59,10 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+    // public function show($id)
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -71,10 +70,10 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+    // public function edit($id)
+    // {
+    //     //
+    // }
 
     /**
      * Update the specified resource in storage.

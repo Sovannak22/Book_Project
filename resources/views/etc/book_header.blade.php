@@ -16,7 +16,7 @@
         <a class="nav-link" href="/">Blog</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="{{route('profile.index')}}">Profile</a>
+        <a class="nav-link" href="{{route('profile.index', Auth::user()->id)}}">Profile</a>
         </li>
         <li class="nav-item">
             <a href="/cart" class="nav-link">

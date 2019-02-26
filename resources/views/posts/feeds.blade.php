@@ -29,23 +29,31 @@
               <div class="post-status col-10">
                 <div class="post">
                   <div class="row">
-                    <div class="col-11">
+                    <div class="col-9">
                       <div class="row">
                         <a href="{{route('profile.index', $post->user_id)}}">
                           <img src="/images/cats_blue_eyes_animals_pets_4288x2848.jpg" style="width:50px;height:50px;margin-left:15px;margin-top:15px;border-radius: 50%;" alt="">
                         </a>
-                        <a class="" href="{{route('profile.index', 'id='.$post->user_id)}}">
+                        <a class="" href="{{route('profile.index', $post->user_id)}}">
                           <p style="margin-top:20px;margin-left: 10px;font-size:20pt;">{{$post->user->name}}</p>
                         </a>
                       </div>
                     </div>
-                    <div class="col-1">
-                      @if (Auth::user()->id == $post->user->id)
-                        <div class="col-5">
-                          <a href="{{route('post.edit', $post->id)}}" class="btn"><i class="far fa-edit"></i></a>
-                          <a href="{{route('post.delete', $post->id)}}" class="btn"><i class="far fa-trash-alt"></i></a>
+                    <div class="col-3">
+                      <div class="row">
+                        <div class="col-6">
+                          {{-- <button type="button" name="button" style="margin-top:20px;margin-left:50px;">follow</button> --}}
+                          <a href="#" class="btn btn-primary" style="margin-top:20px;margin-left:50px;">follow</a>
                         </div>
-                      @endif
+                        <div class="col">
+                          @if (Auth::user()->id == $post->user->id)
+                            <div class="col">
+                              <a href="{{route('post.edit', $post->id)}}" class="btn"><i class="far fa-edit"></i></a>
+                              <a href="{{route('post.delete', $post->id)}}" class="btn"><i class="far fa-trash-alt"></i></a>
+                            </div>
+                          @endif
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div class="row">

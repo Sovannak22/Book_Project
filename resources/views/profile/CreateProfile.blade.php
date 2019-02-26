@@ -5,19 +5,19 @@
 	<div class="container-fluid">
 		<div class="row ">
 			<div class="col-1">
-				
+
 			</div>
 <!-- profile image ------------------------------------------------------------------------------------------>
 			<div class="col-2 d-flex justify-content-center">
 				<div class="btn">
-					<img data-toggle="modal" data-target="#imageButton" src="/images/{{Auth::user() ->profile_img}}" style="border-radius: 50%;width: 125px;height: 125px" alt="..." class="img-thumbnail">
+					<img data-toggle="modal" data-target="#imageButton" src="/images/{{$user->profile_img}}" style="border-radius: 50%;width: 125px;height: 125px" alt="..." class="img-thumbnail">
 				</div>
 			</div>
 			<div class="col-6">
 				<div class="row">
 <!-- username -------------------------------------------------------------------------------------------->
 					<div class="col-4">
-						<b><h2>{{$username}}</h2></b>
+						<b><h2>{{$user->name}}</h2></b>
 					</div>
 <!-- follower ----------------------------------------------------------------------------------=====---->
 					<div class="col-4">
@@ -42,7 +42,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-3">
-				
+
 			</div>
 			<div class="col-6">
 				<div class="row" id="myDIV">
@@ -69,7 +69,7 @@
 				</div>
 			</div>
 			<div class="col-3">
-				
+
 			</div>
 		</div>
 	</div>
@@ -77,13 +77,13 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-2">
-			
+
 			</div>
 			<div class="col-8" style="margin-top: -15px">
 				<hr>
 			</div>
 			<div class="col-2">
-				
+
 			</div>
 		</div>
 	</div>
@@ -93,7 +93,7 @@
 	<div class="container-fluid" id="store_content">
 		<div class="row">
 			<div class="col-2">
-				
+
 			</div>
 			<div class="col-8">
 				<div class="row" style="margin-bottom : 10px">
@@ -115,7 +115,7 @@
 				</div>
 			</div>
 			<div class="col-2">
-				
+
 			</div>
 		</div>
 	</div>
@@ -123,7 +123,7 @@
 	<div class="container-fluid" id="feed_content" style="display: none;">
 		<div class="row">
 			<div class="col-2">
-				
+
 			</div>
 			<div class="col-8">
 				<div class="row" style="margin-bottom : 10px">
@@ -162,7 +162,7 @@
 					                        {{ $post->description }}
 					                      </p>
 															</div>.
-															
+
 					                  </div>
 					                  <div class="row">
 					                    <div class="col">
@@ -209,7 +209,7 @@
 				</div>
 			</div>
 			<div class="col-2">
-				
+
 			</div>
 		</div>
 	</div>

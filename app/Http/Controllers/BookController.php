@@ -94,7 +94,13 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        //
+        $book=Book::find($id);
+        $store=$book->store;
+        $data=array(
+            'book'=>$book,
+            'store'=>$store
+        );
+        return view('books.show')->with($data);
     }
 
     /**
@@ -105,7 +111,9 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        //
+        $book = Book::find($id);
+        
+        return view('books.edit')->with('book',$book);  
     }
 
     /**
@@ -117,7 +125,25 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $book = Book::find($id);
+        $store_id = Auth::user()->store->id;
+        $book->title=$request->get('title');
+        $book->author=$request->get('author');
+        $book->description=$request->get('description');
+        $book->for_id=$request->get('for');
+        $book->condition_id=$request->get('condition');
+        $book->price=$request->get('price');
+        if($request->hasFile('book_img')){
+            $book_img = $request->file('book_img');
+            $fileName = time().'.'.$book_img->getClientOriginalExtension();
+            Image::make($book_img)->resize(250,350)->save(public_path('/storage/book_img/'.$fileName));
+            $book->book_img=$fileName;
+        }
+        $book->store_id=$store_id;
+        $book->save();
+        DB::table('book_category')->where('book_id', $id)->delete();
+        $book->categories()->sync($request->get('categories'));
+        return redirect("/managestore/{$store_id}");
     }
 
     /**

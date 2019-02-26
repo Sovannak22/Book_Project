@@ -71,7 +71,10 @@ class StoreController extends Controller
     public function show($id)
     {
         $store = Store::find($id);
-        return view('stores.show')->with(['store'=>$store]);
+        $books = $store->books;
+        // dd($books);
+
+        return view('stores.show')->with(['store'=>$store,'books'=>$books]);
     }
 
     /**

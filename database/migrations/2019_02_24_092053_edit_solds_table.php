@@ -15,7 +15,6 @@ class EditSoldsTable extends Migration
     {
         Schema::table('solds', function (Blueprint $table) {
             $table->unsignedInteger("buyer_id");
-            $table->dropColumn("price");
             $table->foreign('buyer_id')->references('id')->on('users');
         });
     }
@@ -29,7 +28,6 @@ class EditSoldsTable extends Migration
     {
         Schema::table('solds', function (Blueprint $table) {
             $table->dropColumn('buyer_id');
-            $table->integer('price');
         });
     }
 }

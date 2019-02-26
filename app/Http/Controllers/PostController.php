@@ -20,7 +20,7 @@ class PostController extends Controller
       $post->user_id = $id;
       $post->save();
 
-      return redirect('feeds');
+      return back();
     }
     public function index()
     {

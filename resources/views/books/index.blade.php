@@ -107,7 +107,7 @@
                                     <div class="backside">
                                         <div class="card">
                                             <div class="card-body mt-4">
-                                                <h4 class="card-title">{{ $book->title }}</h4>
+                                                <a href="/books/{{$book->id}}"><h4 class="card-title">{{ $book->title }}</h4></a>
                                                 <p class="card-text">By: {{$book->author}}</p>
                                                 <p class="card-text">Category:  @foreach($book->categories as $category) <span class="bg-primary rounded p-1">{{$category->category}}</span> @endforeach</p>
                                                 <p class="card-text">{{ str_limit($book->description, $limit = 50, $end = '...') }}</p>

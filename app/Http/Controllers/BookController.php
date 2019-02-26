@@ -19,7 +19,7 @@ class BookController extends Controller
     public function __construct()
     {
         $bookInCart=0;
-        $this->middleware('auth',['except'=>['index','show','booksCategory','search']]);
+        $this->middleware('auth');
         $categories = Category::orderBy('category','asc')->get();
         $conditions = Condition::all();
         $fors = ForModel::all();

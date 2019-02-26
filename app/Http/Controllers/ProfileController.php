@@ -17,15 +17,16 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $books = Book::all();
-        $username =  \Auth::user()->name;
-        $follower = Follow::where('user_id',Auth::user()->id)->count('follower_id');
-        $following = Follow::where('follower_id',Auth::user()->id)->count('user_id');
-        $posts = Post::all()->where('user_id',Auth::user()->id)->sortByDesc('created_at');
+        $user = User::find($id);
+        $store = Store::where('user_id', $user->id)->first();
+        $books = Book::where('store_id', $store->id)->all();
+        $follower = Follow::where('user_id', $user->id)->count('follower_id');
+        $following = Follow::where('follower_id', $user->id)->count('user_id');
+        $posts = Post::where('user_id', $user->id)->sortByDesc('created_at')->all();
         $comment = Comment::all();
-        return view('profile.CreateProfile',compact('username','follower','following','books','posts','comment')); 
+        return view('profile.CreateProfile',compact('user','follower','following','books','posts','comment')); 
     }
 
     /**

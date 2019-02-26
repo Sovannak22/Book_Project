@@ -1,26 +1,26 @@
 function alertAddToCart(button,token){
     swal({
         title: "Are you sure?",
-        text: "Add this book to your cart.",
+        text: "Delete this book...",
         buttons: true,
         })
-        .then((willAdd) => {
-        if (willAdd) {
+        .then((willDelete) => {
+        if (willDelete) {
             var id=$(button).val();
             $.ajax({
-                type: 'post',
-                url: "/addBookToCart",
-                data: {'book_id':id,'_token':token},
+                type: 'DELETE',
+                url: "/books/"+id,
+                data: {'book_id':id,'_token':token,"_method": 'DELETE'},
                 success:function(responce){
                     console.log(responce);
                     if (responce=="success"){
-                        swal("Book added to your cart.", {
+                        swal("Book deleted", {
                             icon: "success",
                         });
                     }
-                    else{
-                        swal("This book already in your cart");
-                    }
+                    // else{
+                    //     swal("This book already in your cart");
+                    // }
                 }
             });
         }

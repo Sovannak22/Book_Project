@@ -154,7 +154,8 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Book::destroy($id);
+        return 'success';
     }
 
     public function erroMissingStore(){

@@ -12,16 +12,16 @@
             <div class="col-lg-4 col-md-4 col-sm-12 d-flex justify-content-center bg-fav">
                 <img class="rounded" src="/storage/book_img/{{$book->book_img}}" class="h-100 w-75" alt="{{$book->book_img}}">
             </div>
-            <div class="col-lg-5 col-md-5 col-sm-12 bg-fav">
+            <div class="col-lg-5 col-md-5 col-sm-12 bg-fav text-light">
                 <h1 class=" my-3">Title: {{$book->title}}</h1>
                 <h4 class=" my-3">By: {{$book->author}}</h4>
-                <div>
-                    {{-- <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span> --}}
-                    @include('books.here');
+                <div class="text-light row">
+                        
+                    <h1 class="col-md-3">Rate:</h1>
+                    <h1 class="col-md-2">{!! floor(($book->averageRating())*10)/10; !!}</h1>
+                    <h1>
+                        <span class="fa fa-star checked"></span>
+                    </h1>
                 </div>
                 <h5 class="rounded w-50 p-3 my-3 bg-primary ">
                     Price: {{$book->price}}$
@@ -34,6 +34,22 @@
                 <button class="btn btn-warning w-100 p-3 mt-5 text-light" onclick="alertAddToCart(this)"><h3><i class="fa fa-cart-plus"></i>Add To Cart</h3></button>
             </div>
         </div>
+        <div >
+            {!! Form::open(['route' => ['books.rate',$book->id], 'method' => 'POST']) !!}
+                    <div class="ml-2">
+                        @include('books.here');
+                        
+                    </div>
+
+                    <div class="form-group ">
+                        
+                        {!! Form::submit('Rate',['class'=>'btn btn-primary']) !!}
+                    </div>
+    
+            {!! Form::close() !!}
+
+        </div>
+
     </div>
     <div class="container-fluid" style="position:relative">
         @include('etc.footer')

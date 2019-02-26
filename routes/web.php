@@ -38,7 +38,7 @@ Route::get('/cart','CartController@show');
 Route::get('/test',function(){
     return view('books.show');
 });
-
+Route::post('/book/{id}', 'BookController@rating')->name('books.rate');
 
 
 Route::get('/', 'PostController@index')->name('feeds')->middleware('auth');

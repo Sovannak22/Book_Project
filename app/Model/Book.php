@@ -3,11 +3,14 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use willvincent\Rateable\Rateable;
 use App\Model\Category;
 use App\User;
 
 class Book extends Model
 {
+    use Rateable;
+    
     protected $fillable = [
         'title','author','description','book_img'
     ];

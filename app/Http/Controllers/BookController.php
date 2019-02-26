@@ -13,8 +13,12 @@ use Image;
 use Illuminate\Support\Facades\DB;
 use View;
 
+
+
+
 class BookController extends Controller
 {
+    // use Rateable;
 
     public function __construct()
     {
@@ -45,6 +49,7 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::all();
+        
         return view('books.index')->with('books',$books);
 
     }
@@ -107,6 +112,7 @@ class BookController extends Controller
     {
         $book=Book::find($id);
         $store=$book->store;
+        // dd($book->averageRating());
         $data=array(
             'book'=>$book,
             'store'=>$store
@@ -197,5 +203,19 @@ class BookController extends Controller
             // dd($books);
         }
         return view('books.book_cat_show')->with('books',$books);
+    }
+    
+    public function rating(Request $request,$book_id){
+        
+
+
+        $radioVal = $_POST["star"];
+        $book=Book::find($book_id);
+        $rating  = new \willvincent\Rateable\Rating;
+        $rating->rating = $radioVal;
+        $rating->user_id = \Auth::id();        
+        $book->ratings()->save($rating);
+
+        return redirect()->back();
     }
 }

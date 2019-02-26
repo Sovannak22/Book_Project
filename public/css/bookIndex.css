@@ -184,11 +184,7 @@ section .section-title {
 
 .frontside .card .card-body img {
     width: 75%;
-<<<<<<< HEAD
-    height: 100%;
-=======
     height: 10rem;
->>>>>>> 3713206033f736984814497feafaf37ba14ca8ca
     margin-bottom:5rem;
     border-radius: 50%;
 }

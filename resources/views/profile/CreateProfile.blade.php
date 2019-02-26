@@ -251,7 +251,7 @@
 								@if($hasFollow)
 								<a style="background-color:;height: 30px" class="btn btn-light" href="#">Following</a>
 								@else
-								<a style="background-color:;height: 30px" class="btn btn-primary" href="#">Follow</a>
+								<a style="background-color:;height: 30px" class="btn btn-primary" href="{{route('follow.follow', $user->id)}}">Follow</a>
 								@endif
 							</div>
 						</div>

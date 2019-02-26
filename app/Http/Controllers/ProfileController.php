@@ -22,8 +22,8 @@ class ProfileController extends Controller
     {
         $books = Book::all();
         $username =  \Auth::user()->name;
-        $follower = Follow::where('follower_id',Auth::user()->id)->count('user_id');
-        $following = Follow::where('user_id',Auth::user()->id)->count('follower_id');
+        $following = Follow::where('follower_id',Auth::user()->id)->count('user_id');
+        $follower = Follow::where('user_id',Auth::user()->id)->count('follower_id');
         $followingNotCount = DB::table('follows')
         ->join('users','follows.user_id','users.id')
         ->where('follows.follower_id',Auth::user()->id)

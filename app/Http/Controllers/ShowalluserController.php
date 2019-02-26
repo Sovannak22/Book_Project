@@ -27,11 +27,17 @@ class ShowalluserController extends Controller
     }
     public function follow($id)
     {
-       $follow = DB::table('follows');
-       $follow->user_id=$id;
-       $follow->follower_id=Auth::user()->id;
-       dd($follow);
-       $follow->save();
+
+		$books = DB::table('follow')
+            ->join('users','user_id','follows.user_id')
+            ->where('user_id',$user_id)
+            ->get();
+
+       // $follow = DB::table('follows');
+       // $follow->user_id=$id;
+       // $follow->follower_id=Auth::user()->id;
+       // dd($follow);
+       // $follow->save();
        return view('profile.CreateProfile');
     }
 }

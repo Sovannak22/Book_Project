@@ -115,12 +115,12 @@
                                             </div>
                                             <div class="card-footer text-center">
                                                 @if($book->store->user->id != Auth::user()->id)
-                                                <button class="btn btn-warning rounded py-1" onclick="alertAddToCart(this)" value="{{$book->id}}">
+                                                <button class="btn btn-warning rounded py-1" onclick="alertAddToCart(this,'{{csrf_token()}}')" value="{{$book->id}}">
                                                     <i class="fa fa-cart-plus"></i>
                                                 </button>
                                                 <a href="" class="btn btn-success rounded"><i class="fa fa-check"></i></a>
                                                 @else 
-                                                <button class="btn btn-danger rounded py-1" onclick="alertAddToCart(this)" value="{{$book->id}}">
+                                                <button class="btn btn-danger rounded py-1" onclick="alertDelete(this,'{{csrf_token()}}')" value="{{$book->id}}">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                                 <a href="/books/{{$book->id}}/edit" class="btn btn-warning rounded"><i class="fa fa-pencil-square"></i></a>
@@ -148,6 +148,7 @@
 
 @section('js')
     <script src="{{ asset('js/addToCart.js') }}"></script>
+    <script src="{{ asset('js/deleteBook.js') }}"></script>
     <script>
         $(document).ready(function(){
             @foreach($categories as $category)

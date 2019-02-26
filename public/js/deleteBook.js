@@ -1,4 +1,4 @@
-function alertAddToCart(button,token){
+function alertDelete(button,token){
     swal({
         title: "Are you sure?",
         text: "Delete this book...",
@@ -17,6 +17,7 @@ function alertAddToCart(button,token){
                         swal("Book deleted", {
                             icon: "success",
                         });
+                        location.reload();
                     }
                     // else{
                     //     swal("This book already in your cart");

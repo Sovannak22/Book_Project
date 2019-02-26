@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Model\Book;
 use Auth;
 use App\Model\Cart;
+use Illuminate\Support\Facades\Input;
 class CartController extends Controller
 {
     public function __construct(){

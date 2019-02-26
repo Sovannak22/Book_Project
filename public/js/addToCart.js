@@ -7,6 +7,7 @@ function alertAddToCart(button,token){
         .then((willAdd) => {
         if (willAdd) {
             var id=$(button).val();
+            console.log(id);
             $.ajax({
                 type: 'post',
                 url: "/addBookToCart",

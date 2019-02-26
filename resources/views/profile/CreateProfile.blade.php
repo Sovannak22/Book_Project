@@ -35,7 +35,7 @@
 				</div>
 			</div>
 			<div class="col-2">
-				<button style="background-color: green" class="btn btn-success">Edit</button>
+				<a style="background-color: green" class="btn btn-success" href="{{ route('editprofile.edit',Auth::user()->id) }}">Edit</a>
 			</div>
 		</div>
 	</div>
@@ -233,6 +233,7 @@
 								$hasFollow=0;
 								$user_1 = DB::table('users')->where('id',$user->follower_id)->get();
 								$user_name = ($user_1[0]->name);
+								$user_id = ($user_1[0]->id);
 								foreach ($followingNotCount as $following){
 									//dd($user);
 									if ($following->user_id==$user->follower_id){
@@ -251,7 +252,7 @@
 								@if($hasFollow)
 								<a style="background-color:;height: 30px" class="btn btn-light" href="#">Following</a>
 								@else
-								<a style="background-color:;height: 30px" class="btn btn-primary" href="{{route('follow.follow', $user->id)}}">Follow</a>
+								<a style="background-color:;height: 30px" class="btn btn-primary" href="{{route('follow.follow', $user_id)}}">Follow</a>
 								@endif
 							</div>
 						</div>
@@ -284,7 +285,7 @@
 								<p>{{$user->name}}</p>
 							</div>
 							<div class="col-4 d-flex justify-content-center">
-								<button style="background-color:;height: 30px" class="btn btn-light">Following</button>
+								<button style="background-color:;height: 30px" class="btn btn-light" data-toggle="modal" data-target="#exampleModalLong" >Following</button>
 							</div>
 						</div>
 					</div>
@@ -326,6 +327,46 @@
 					</div>
         		</div>
         	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- lakkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        	<div class="container">
+	      			<div class="row">
+	      				
+						<div class="col-12 d-flex justify-content-center">
+							Do you want to unfollow this user?
+						</div>
+						
+	      			</div>
+	      			
+	      	</div>
+      </div>
+      <div class="modal-footer">
+      		<div class="container">
+      			<div class="row">
+	      				<div class="col-12">
+	      					<button class="btn-primary col-12">Yes</button>
+	      				</div>
+	      			</div>
+	      			<div class="row">
+	      				<div class="col-12">
+	      					<button class="btn-danger col-12">no</button>
+	      				</div>
+	      			</div>
+      		</div>
       </div>
     </div>
   </div>

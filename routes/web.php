@@ -52,4 +52,4 @@ Route::get('/like/{id}', 'PostController@like')->name('feeds.like');
 Route::post('/comment/store', 'CommentController@store')->name('comment.add');
 Route::post('/reply/store', 'CommentController@replyStore')->name('reply.add');
 Route::get('/alluser','ShowalluserController@index');
-Route::post('/follow/{id}','ShowalluserController@follow')->name('follow.follow');
+Route::get('/follow/{id}','ShowalluserController@follow')->name('follow.follow');

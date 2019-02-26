@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-laravel">
     <div class="container ">
         <a class="navbar-brand  text-success" href="{{ url('/') }}">
-            {{ config('app.name', 'Laravel') }}
+            Book Project
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
@@ -31,42 +31,29 @@
                 @else
                     <li class="nav-item dropdown">
 
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            <img class="round-img" height="30px" width="30px" src="images/{{Auth::user() ->profile_img}}"
-                                    alt="">
-                                    {{-- style="border:solid black 2px;border-radius:25%" --}}
-                            {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                        <li class="nav-item dropdown">
+                        
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
                             </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </div>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a href="/profile" class="dropdown-item">Profile</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+    
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
                     </li>
                     <li class="nav-item">
                         <a href="/books" class="nav-link mt-1" style="">
-                            <div class="" style="height:25px;border-left: solid #8c8c8c 0.1rem;border-right: solid #8c8c8c 0.1rem">
-                                <p class=""><b>Book Store</b></p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="" class="nav-link" style="">
                             <div class="">
-                                <img width="25rem" height="25rem" src="{{asset('icon/gear.svg')}}" alt="">
-                            </div>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="" class="nav-link" style="">
-                            <div class="">
-                                <img width="25rem" height="25rem" src="{{asset('icon/question-mark.svg')}}" alt="">
+                                <p style="margin-left: 5px;margin-right: 5px;padding-top: 1px;font-size:12pt;"><b>Book Store</b></p>
                             </div>
                         </a>
                     </li>

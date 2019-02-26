@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSubCategoriesTable extends Migration
+class EditSoldsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateSubCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sub_categories', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('sub_category');
-            $table->integer('category_id');
-            $table->timestamps();
+        Schema::table('solds', function (Blueprint $table) {
+            $table->unsignedInteger("buyer_id");
+            $table->foreign('buyer_id')->references('id')->on('users');
         });
     }
 
@@ -28,6 +26,8 @@ class CreateSubCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sub_categories');
+        Schema::table('solds', function (Blueprint $table) {
+            $table->dropColumn('buyer_id');
+        });
     }
 }

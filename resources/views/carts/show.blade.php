@@ -18,7 +18,7 @@
                             <a href=""><h1>{{$book->title}}</h1></a>
                         </div>
                         <p>
-                            <p class="card-text">{{ str_limit($book->description, $limit = 100, $end = '...') }}</p>
+                            {{ str_limit($book->description, $limit = 100, $end = '...') }}
                         </p>
                         <small class="text-secondary">By: {{$book->author}}</small>
                         <h4>

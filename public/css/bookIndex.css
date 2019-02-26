@@ -1,5 +1,9 @@
 .card-img-top{
     width: 100%;
+<<<<<<< HEAD
+=======
+    height: 15rem; 
+>>>>>>> master
     object-fit: cover;
     
     
@@ -10,7 +14,7 @@
     background-color: #4CAF50;
     color: white;
     padding: 16px;
-    font-size: 16px;
+    /* font-size: 16px; */
     border: none;
   }
   
@@ -33,7 +37,6 @@
   /* Links inside the dropdown */
   .dropdown-content a {
     color: black;
-    padding: 12px 16px;
     text-decoration: none;
     display: block;
   }
@@ -171,22 +174,32 @@ section .section-title {
 }
 
 .backside .card a {
-    font-size: 18px;
-    color: #007b5e !important;
+    color: #fff !important;
 }
 .backside .card button {
+<<<<<<< HEAD
     font-size: 19px;
     color: #007b5e !important;
 }
+=======
+    color: #fff !important;
+>>>>>>> master
 
+}
 .frontside .card .card-title,
 .backside .card .card-title {
     color: #007b5e !important;
 }
 
 .frontside .card .card-body img {
+<<<<<<< HEAD
     width: 75%;
     height: 15rem;
+=======
+    width: 120px;
+    height: 10rem;
+    margin-bottom:5rem;
+>>>>>>> master
     border-radius: 50%;
 }
 

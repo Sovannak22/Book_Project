@@ -20,7 +20,7 @@ class PostController extends Controller
       $post->user_id = $id;
       $post->save();
 
-      return redirect('feeds');
+      return back();
     }
     public function index()
     {
@@ -31,8 +31,8 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-
-        return view('posts.show', compact('post'));
+        $comment = Comment::all();    
+        return view('posts.show', compact(['post', 'comment']));
     }
     public function like($id)
     {

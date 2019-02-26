@@ -10,10 +10,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
-                <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+                <li class="nav-item">
+                    <a href="/books" class="nav-link">
+                        Books
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/stores" class="nav-link">
+                        Stores
+                    </a>
+                </li>
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -44,7 +50,7 @@
                             {{ Auth::user()->name }}
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a href="" class="dropdown-item">Profile</a>
+                            <a href="/profile" class="dropdown-item">Profile</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">

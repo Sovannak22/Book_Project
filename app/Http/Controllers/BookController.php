@@ -155,7 +155,10 @@ class BookController extends Controller
         DB::table('book_category')->where('book_id', $id)->delete();
         $book->categories()->sync($request->get('categories'));
         return redirect("/managestore/{$store_id}");
+<<<<<<< HEAD
         
+=======
+>>>>>>> master
     }
 
     /**
@@ -178,9 +181,11 @@ class BookController extends Controller
 
     public function search(Request $request){
         $searchData = $request->searchBook;
-        $books = DB::table('books')
-            ->where('title','like','%'.$searchData.'%')
-            ->get();
+        // $books = DB::table('books')
+        //     ->where('title','like','%'.$searchData.'%')
+        //     ->get();
+        $books = Book::where('title','like','%'.$searchData.'%')->get();
+        // dd($books);
         return view('books.index')->with('books',$books);
     
     }

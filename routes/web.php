@@ -58,4 +58,4 @@ Route::get('/delete/{id}', 'PostController@destroy')->name('post.delete');
 Route::post('/comment/store', 'CommentController@store')->name('comment.add');
 Route::post('/reply/store', 'CommentController@replyStore')->name('reply.add');
 Route::get('/alluser','ShowalluserController@index');
-Route::post('/follow{id}','ShowalluserController@follow')->name('follow.follow');
+Route::post('/follow/{id}','ShowalluserController@follow')->name('follow.follow');

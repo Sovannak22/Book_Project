@@ -21,21 +21,21 @@
 					</div>
 <!-- follower ----------------------------------------------------------------------------------=====---->
 					<div class="col-4">
-						<p class="btn" data-toggle="modal" data-target="#followerButton">{{$follower}} Following</p>
+						<p class="btn" data-toggle="modal" data-target="#followerButton">{{$follower}} Follower</p>
 					</div>
 <!-- following---------------------------------------------------------------------------------------->
 					<div class="col-4">
-						<p class="btn" data-toggle="modal" data-target="#followingButton">{{$following}} Follower</p>
+						<p class="btn" data-toggle="modal" data-target="#followingButton">{{$following}} Following</p>
 					</div>
 				</div>
 <!-- description--------------------------------------------------------------------------------------->
 				<div class="row">
-					<p>{{Auth::user() ->bio}}</p>
+					<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
+					</p>
 				</div>
 			</div>
 			<div class="col-2">
-				<a href="{{ route('editprofile.edit',Auth::user()->id)}}" class="btn btn-success">Edit</a>
-				<!-- <button style="background-color: green" class="btn btn-success">Edit</button> -->
+				<button style="background-color: green" class="btn btn-success">Edit</button>
 			</div>
 		</div>
 	</div>
@@ -73,7 +73,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- line hr =========================================================== -->
+	<!-- line hr ===========================================================-->
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-2">
@@ -235,39 +235,7 @@
 	        </button>
 	     </div>
 	    	<div class="modal-body" id="followModal">
-	      		<div class="container">
-						@foreach($followingNotCount as $user)
-	      			<div class="row">
-
-							<div class="col-4 d-flex justify-content-center">
-							<img src="images/default.jpg" alt="tktk" style="border-radius: 50%;width: 30px;height: 30px">
-							</div>
-							<div class="col-4 d-flex justify-content-center">
-								<p>{{$user->name}}</p>
-							</div>
-							<div class="col-4 d-flex justify-content-center">
-								<button style="background-color:;height: 30px" class="btn btn-light">Following</button>
-							</div>
-						@endforeach
-	      			</div>
-	      		</div>
-	      	</div>
-	   </div>
-	  </div>
-</div>
-<!-- following alert====================================================================== -->
-<div class="modal fade" id="followingButton" tabindex="-1" role="dialog" aria-labelledby="followingButton" aria-hidden="true" style="margin-top: 5%;">
-	<div class="modal-dialog" role="document">
-	   <div class="modal-content">
-	     <div class="modal-header">
-	     	<div class="col-4"></div>
-	     	<h5 class="col-4 modal-title text-center" id="followingButton">Follower</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	     </div>
-	    	<div class="modal-body" id="followModal">
-					@foreach($followerUsers as $user)
+            @foreach($followerUsers as $user)
 	      		<div class="container">
 	      			<div class="row">
 							@php
@@ -292,15 +260,48 @@
 								@if($hasFollow)
 								<a style="background-color:;height: 30px" class="btn btn-light" href="#">Following</a>
 								@else
-								<a style="background-color:;height: 30px" class="btn btn-primary" href="#">Follow</a>
+								<a style="background-color:;height: 30px" class="btn btn-primary" href="{{route('follow.follow', $user->id)}}">Follow</a>
 								@endif
 							</div>
+						</div>
+					</div>
 						@endforeach
-	      		</div>
 	      	</div>
 	   </div>
 	  </div>
 </div>
+<!-- following alert====================================================================== -->
+<div class="modal fade" id="followingButton" tabindex="-1" role="dialog" aria-labelledby="followingButton" aria-hidden="true" style="margin-top: 5%;">
+	<div class="modal-dialog" role="document">
+	   <div class="modal-content">
+	     <div class="modal-header">
+	     	<div class="col-4"></div>
+	     	<h5 class="col-4 modal-title text-center" id="followingButton">Follower</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	     </div>
+	    	<div class="modal-body" id="followModal">
+            @foreach($followingNotCount as $user)
+	      		<div class="container">
+	      			<div class="row">
+								
+							<div class="col-4 d-flex justify-content-center">
+							<img src="images/default.jpg" alt="tktk" style="border-radius: 50%;width: 30px;height: 30px">
+							</div>
+							<div class="col-4 d-flex justify-content-center">
+								<p>{{$user->name}}</p>
+							</div>
+							<div class="col-4 d-flex justify-content-center">
+								<button style="background-color:;height: 30px" class="btn btn-light">Following</button>
+							</div>
+						</div>
+					</div>
+						@endforeach
+	      			</div>
+	      		</div>
+	      	</div>
+	   </div>
 <!-- change image alert==================================================================== -->
 <div class="modal fade" id="imageButton" tabindex="-1" role="dialog" aria-labelledby="imageButton" aria-hidden="true">
   <div class="modal-dialog" role="document">

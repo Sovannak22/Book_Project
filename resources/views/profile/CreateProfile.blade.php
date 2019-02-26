@@ -21,11 +21,11 @@
 					</div>
 <!-- follower ----------------------------------------------------------------------------------=====---->
 					<div class="col-4">
-						<p class="btn" data-toggle="modal" data-target="#followerButton">{{$follower}} Follower</p>
+						<p class="btn" data-toggle="modal" data-target="#followerButton">{{$follower}} Following</p>
 					</div>
 <!-- following---------------------------------------------------------------------------------------->
 					<div class="col-4">
-						<p class="btn" data-toggle="modal" data-target="#followingButton">{{$following}} Following</p>
+						<p class="btn" data-toggle="modal" data-target="#followingButton">{{$following}} Follower</p>
 					</div>
 				</div>
 <!-- description--------------------------------------------------------------------------------------->
@@ -227,26 +227,19 @@
 	     </div>
 	    	<div class="modal-body" id="followModal">
 	      		<div class="container">
+						@foreach($followingNotCount as $user)
 	      			<div class="row">
-	      				<div class="col-4 d-flex justify-content-center">
+								
+							<div class="col-4 d-flex justify-content-center">
 							<img src="images/default.jpg" alt="tktk" style="border-radius: 50%;width: 30px;height: 30px">
-						</div>
-						<div class="col-4 d-flex justify-content-center">
-							<p>usename</p>
-						</div>
-						<div class="col-4 d-flex justify-content-center">
-							<button style="height: 30px" class="btn btn-primary">Follow</button>
-						</div>
-
-						<div class="col-4 d-flex justify-content-center">
-							<img src="images/default.jpg" alt="tktk" style="border-radius: 50%;width: 30px;height: 30px">
-						</div>
-						<div class="col-4 d-flex justify-content-center">
-							<p>usename</p>
-						</div>
-						<div class="col-4 d-flex justify-content-center">
-							<button style="background-color:;height: 30px" class="btn btn-light">Following</button>
-						</div>
+							</div>
+							<div class="col-4 d-flex justify-content-center">
+								<p>{{$user->name}}</p>
+							</div>
+							<div class="col-4 d-flex justify-content-center">
+								<button style="background-color:;height: 30px" class="btn btn-light">Following</button>
+							</div>
+						@endforeach
 	      			</div>
 	      		</div>
 	      	</div>
@@ -265,28 +258,35 @@
 	        </button>
 	     </div>
 	    	<div class="modal-body" id="followModal">
+	    		@foreach($followerUsers as $user)
 	      		<div class="container">
 	      			<div class="row">
-	      				<div class="col-4 d-flex justify-content-center">
+							@php
+								$hasFollow=0;
+								$user_1 = DB::table('users')->where('id',$user->follower_id)->get();
+								$user_name = ($user_1[0]->name);
+								foreach ($followingNotCount as $following){
+									//dd($user);
+									if ($following->user_id==$user->follower_id){
+										$hasFollow=1;
+										break;
+									}
+								}
+							@endphp
+							<div class="col-4 d-flex justify-content-center">
 							<img src="images/default.jpg" alt="tktk" style="border-radius: 50%;width: 30px;height: 30px">
-						</div>
-						<div class="col-4 d-flex justify-content-center">
-							<p>usename</p>
-						</div>
-						<div class="col-4 d-flex justify-content-center">
-							<button style="background-color:;height: 30px" class="btn btn-light">Following</button>
-						</div>
-
-						<div class="col-4 d-flex justify-content-center">
-							<img src="images/default.jpg" alt="tktk" style="border-radius: 50%;width: 30px;height: 30px">
-						</div>
-						<div class="col-4 d-flex justify-content-center">
-							<p>usename</p>
-						</div>
-						<div class="col-4 d-flex justify-content-center">
-							<button style="background-color:;height: 30px" class="btn btn-light">Following</button>
-						</div>
-	      			</div>
+							</div>
+							<div class="col-4 d-flex justify-content-center">
+								<p>{{$user_name}}</p>
+							</div>
+							<div class="col-4 d-flex justify-content-center">
+								@if($hasFollow)
+								<a style="background-color:;height: 30px" class="btn btn-light" href="#">Following</a>
+								@else
+								<a style="background-color:;height: 30px" class="btn btn-primary" href="#">Follow</a>
+								@endif
+							</div>
+						@endforeach
 	      		</div>
 	      	</div>
 	   </div>

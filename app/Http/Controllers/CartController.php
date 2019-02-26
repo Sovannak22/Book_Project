@@ -28,6 +28,8 @@ class CartController extends Controller
             ->join('books','books.id','book_cart.book_id')
             ->where('carts.id',$cart_id)
             ->get();
+
+        dd($books);
         return view('carts.show')->with('books',$books);
 
     }

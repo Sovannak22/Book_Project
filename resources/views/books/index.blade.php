@@ -115,15 +115,15 @@
                                             </div>
                                             <div class="card-footer text-center">
                                                 @if($book->store->user->id != Auth::user()->id)
-                                                <button class="btn btn-warning rounded py-1" onclick="alertAddToCart(this)" value="{{$book->id}}">
-                                                    <i class="fa fa-cart-plus"></i>
+                                                <button class="btn btn-info rounded" onclick="alertAddToCart(this)" value="{{$book->id}}">
+                                                    <i class="fa fa-cart-plus my-1 mx-2"></i>
                                                 </button>
-                                                <a href="" class="btn btn-success rounded"><i class="fa fa-check"></i></a>
+                                                <a href="" class="btn btn-success rounded"><i class="fa fa-check mx-2"></i></a>
                                                 @else 
-                                                <button class="btn btn-danger rounded py-1" onclick="alertAddToCart(this)" value="{{$book->id}}">
-                                                    <i class="fa fa-trash"></i>
+                                                <button class="btn btn-danger rounded" onclick="alertAddToCart(this)" value="{{$book->id}}">
+                                                    <i class="fa fa-trash my-1 mx-2"></i>
                                                 </button>
-                                                <a href="/books/{{$book->id}}/edit" class="btn btn-warning rounded"><i class="fa fa-pencil-square"></i></a>
+                                                <a href="/books/{{$book->id}}/edit" class="btn btn-secondary rounded">EDIT</a>
                                                 @endif
                                             </div>
                                         </div>

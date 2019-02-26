@@ -16,11 +16,12 @@
                 <h1 class=" my-3">Title: {{$book->title}}</h1>
                 <h4 class=" my-3">By: {{$book->author}}</h4>
                 <div>
-                    <span class="fa fa-star checked"></span>
+                    {{-- <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span> --}}
+                    @include('books.here');
                 </div>
                 <h5 class="rounded w-50 p-3 my-3 bg-primary ">
                     Price: {{$book->price}}$

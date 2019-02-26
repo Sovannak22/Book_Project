@@ -14,9 +14,14 @@ function alertAddToCart(button){
                 data: 'book_id=' + id,
                 success:function(responce){
                     console.log(responce);
-                    swal("Book added to your cart.", {
-                    icon: "success",
-                    });
+                    if (responce=="success"){
+                        swal("Book added to your cart.", {
+                            icon: "success",
+                        });
+                    }
+                    else{
+                        swal("This book already in your cart");
+                    }
                 }
             });
         }

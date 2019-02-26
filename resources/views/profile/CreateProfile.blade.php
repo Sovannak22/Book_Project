@@ -21,21 +21,21 @@
 					</div>
 <!-- follower ----------------------------------------------------------------------------------=====---->
 					<div class="col-4">
-						<p class="btn" data-toggle="modal" data-target="#followerButton">{{$follower}} Follower</p>
+						<p class="btn" data-toggle="modal" data-target="#followerButton">{{$follower}} Following</p>
 					</div>
 <!-- following---------------------------------------------------------------------------------------->
 					<div class="col-4">
-						<p class="btn" data-toggle="modal" data-target="#followingButton">{{$following}} Following</p>
+						<p class="btn" data-toggle="modal" data-target="#followingButton">{{$following}} Follower</p>
 					</div>
 				</div>
 <!-- description--------------------------------------------------------------------------------------->
 				<div class="row">
-					<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
-					</p>
+					<p>{{Auth::user() ->bio}}</p>
 				</div>
 			</div>
 			<div class="col-2">
-				<button style="background-color: green" class="btn btn-success">Edit</button>
+				<a href="{{ route('editprofile.edit',Auth::user()->id)}}" class="btn btn-success">Edit</a>
+				<!-- <button style="background-color: green" class="btn btn-success">Edit</button> -->
 			</div>
 		</div>
 	</div>
@@ -73,7 +73,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- line hr ===========================================================-->
+	<!-- line hr =========================================================== -->
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-2">
@@ -131,9 +131,9 @@
 						  <div class="row">
 						    <div class="col d-flex justify-content-center">
 					        <div class="container feeds">
-					          @foreach ($posts as $post)
+					          {{-- @foreach ($posts as $post)
 					            <div class="d-flex justify-content-center">
-					              <div class="post-status col-10">
+					              <div class="post-status col-12">
 					                <div class="post">
 					                  <div class="row">
 					                    <div class="col">
@@ -161,8 +161,8 @@
 					                      <p class="status-text">
 					                        {{ $post->description }}
 					                      </p>
-															</div>.
-
+										</div>.
+															
 					                  </div>
 					                  <div class="row">
 					                    <div class="col">
@@ -201,7 +201,88 @@
 					                </div>
 					              </div>
 					            </div>
-					          @endforeach
+										@endforeach --}}
+										
+										@foreach ($posts as $post)
+									<?php
+									$users=$post->users()->get();
+									$count = count($users);?>
+									<div class="d-flex justify-content-center">
+										<div class="post-status col">
+											<div class="post">
+												<div class="row">
+													<div class="col-8">
+														<div class="row">
+															<a href="{{route('profile.index', $post->user_id)}}">
+																<img src="/images/cats_blue_eyes_animals_pets_4288x2848.jpg" style="width:50px;height:50px;margin-left:15px;margin-top:15px;border-radius: 50%;" alt="">
+															</a>
+															<a class="" href="{{route('profile.index', $post->user_id)}}">
+																<p style="margin-top:20px;margin-left: 10px;font-size:20pt;">{{$post->user->name}}</p>
+															</a>
+														</div>
+													</div>
+													<div class="col-4">
+														<div class="row">
+															<div class="col-8">
+																{{-- <button type="button" name="button" style="margin-top:20px;margin-left:50px;">follow</button> --}}
+																<a href="#" class="btn btn-primary" style="margin-top:20px;margin-left:70px;">follow</a>
+															</div>
+															<div class="col-2">
+																@if (Auth::user()->id == $post->user->id)
+																	<div class="col">
+																		<a href="{{route('post.edit', $post->id)}}" class="btn"><i class="far fa-edit"></i></a>
+																		<a href="{{route('post.delete', $post->id)}}" class="btn"><i class="far fa-trash-alt"></i></a>
+																	</div>
+																@endif
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col status-post">
+														<p class="status-text">
+															{{ $post->description }}
+														</p>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col">
+														<div class="row like-count">
+															<div class="">
+																	<i class="fas fa-thumbs-up"></i>
+															</div>
+															<div class="like-num">
+																<p>
+																	{{$count}}
+																</p>
+															</div>
+														</div>
+													</div>
+													<div class="col-2">
+														<p>{{ $comment->where('post_id', $post->id)->count() }}
+															@if ($comment->where('post_id', $post->id)->count() <= 1)
+																comment
+															@else
+																comments
+															@endif
+														</p>
+													</div>
+												</div>
+												<div class="row cmt-share-btn-group">
+													<div class="col">
+														<a class="like-btn btn btn-secondary" href="{{ route('feeds.like', $post->id) }}"	>like</a>
+													</div>
+													<div class="col">
+														<a class="comment-btn btn btn-secondary" href="{{ route('feeds.show', $post->id) }}">comment</a>
+													</div>
+													<div class="col">
+														<a class="share-btn btn btn-secondary">share</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								@endforeach
 					        </div>
 					      </div>
 					    </div>
@@ -227,26 +308,19 @@
 	     </div>
 	    	<div class="modal-body" id="followModal">
 	      		<div class="container">
+						@foreach($followingNotCount as $user)
 	      			<div class="row">
-	      				<div class="col-4 d-flex justify-content-center">
+								
+							<div class="col-4 d-flex justify-content-center">
 							<img src="images/default.jpg" alt="tktk" style="border-radius: 50%;width: 30px;height: 30px">
-						</div>
-						<div class="col-4 d-flex justify-content-center">
-							<p>usename</p>
-						</div>
-						<div class="col-4 d-flex justify-content-center">
-							<button style="height: 30px" class="btn btn-primary">Follow</button>
-						</div>
-
-						<div class="col-4 d-flex justify-content-center">
-							<img src="images/default.jpg" alt="tktk" style="border-radius: 50%;width: 30px;height: 30px">
-						</div>
-						<div class="col-4 d-flex justify-content-center">
-							<p>usename</p>
-						</div>
-						<div class="col-4 d-flex justify-content-center">
-							<button style="background-color:;height: 30px" class="btn btn-light">Following</button>
-						</div>
+							</div>
+							<div class="col-4 d-flex justify-content-center">
+								<p>{{$user->name}}</p>
+							</div>
+							<div class="col-4 d-flex justify-content-center">
+								<button style="background-color:;height: 30px" class="btn btn-light">Following</button>
+							</div>
+						@endforeach
 	      			</div>
 	      		</div>
 	      	</div>
@@ -265,28 +339,35 @@
 	        </button>
 	     </div>
 	    	<div class="modal-body" id="followModal">
+					@foreach($followerUsers as $user)
 	      		<div class="container">
 	      			<div class="row">
-	      				<div class="col-4 d-flex justify-content-center">
+							@php
+								$hasFollow=0;
+								$user_1 = DB::table('users')->where('id',$user->follower_id)->get();
+								$user_name = ($user_1[0]->name);
+								foreach ($followingNotCount as $following){
+									//dd($user);
+									if ($following->user_id==$user->follower_id){
+										$hasFollow=1;
+										break;
+									}
+								}
+							@endphp
+							<div class="col-4 d-flex justify-content-center">
 							<img src="images/default.jpg" alt="tktk" style="border-radius: 50%;width: 30px;height: 30px">
-						</div>
-						<div class="col-4 d-flex justify-content-center">
-							<p>usename</p>
-						</div>
-						<div class="col-4 d-flex justify-content-center">
-							<button style="background-color:;height: 30px" class="btn btn-light">Following</button>
-						</div>
-
-						<div class="col-4 d-flex justify-content-center">
-							<img src="images/default.jpg" alt="tktk" style="border-radius: 50%;width: 30px;height: 30px">
-						</div>
-						<div class="col-4 d-flex justify-content-center">
-							<p>usename</p>
-						</div>
-						<div class="col-4 d-flex justify-content-center">
-							<button style="background-color:;height: 30px" class="btn btn-light">Following</button>
-						</div>
-	      			</div>
+							</div>
+							<div class="col-4 d-flex justify-content-center">
+								<p>{{$user_name}}</p>
+							</div>
+							<div class="col-4 d-flex justify-content-center">
+								@if($hasFollow)
+								<a style="background-color:;height: 30px" class="btn btn-light" href="#">Following</a>
+								@else
+								<a style="background-color:;height: 30px" class="btn btn-primary" href="#">Follow</a>
+								@endif
+							</div>
+						@endforeach
 	      		</div>
 	      	</div>
 	   </div>

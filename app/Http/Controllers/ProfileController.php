@@ -11,6 +11,7 @@ use App\Model\Comment;
 use Auth;
 use App\User;
 use Image;
+use DB;
 class ProfileController extends Controller
 {
     /**
@@ -29,7 +30,24 @@ class ProfileController extends Controller
         $following = Follow::where('follower_id', $user->id)->count('user_id');
         $posts = Post::all()->where('user_id', $user->id)->sortByDesc('created_at');
         $comment = Comment::all();
-        return view('profile.CreateProfile',compact('user','follower','following','books','posts','comment'));
+
+        // $books = Book::all();
+        // $username =  \Auth::user()->name;
+        // $follower = Follow::where('follower_id',Auth::user()->id)->count('user_id');
+        // $following = Follow::where('user_id',Auth::user()->id)->count('follower_id');
+        $followingNotCount = DB::table('follows')
+        ->join('users','follows.user_id','users.id')
+        ->where('follows.follower_id',Auth::user()->id)
+        ->get();
+        $followerUsers = DB::table('follows')
+        ->join('users','follows.user_id','users.id')
+        ->where('follows.user_id',Auth::user()->id)
+        ->get();
+        // dd($followingNotCount);
+        // $posts = Post::all()->where('user_id',Auth::user()->id)->sortByDesc('created_at');
+        // $comment = Comment::all();
+        // return view('profile.CreateProfile',compact('username','follower','following','books','posts','comment','followingNotCount','followerUsers'));
+        return view('profile.CreateProfile',compact('user','follower','following','books','posts','comment','followingNotCount','followerUsers'));
     }
 
     /**

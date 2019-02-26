@@ -18,10 +18,13 @@
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('profile/{id}', 'ProfileController@index')->name('profile.index')->middleware('auth');
 Route::delete('profile/{id}', 'ProfileController@destroy')->name('profile.destroy')->middleware('auth');
 Route::put('profile/{id}', 'ProfileController@update')->name('profile.update')->middleware('auth');
-// Route::resource('profile', 'ProfileController')->middleware('auth');
+Route::get('/editprofile/edit/{id}', 'EditProfileController@edit')->name('editprofile.edit');
+Route::post('/updateprofile/update/{id}', 'EditProfileController@update')->name('editprofile.update');
+
 Route::resource('books','BookController');
 Route::get('/missstore','BookController@erroMissingStore');
 Route::get('/searchBooks','BookController@search');
@@ -54,3 +57,5 @@ Route::get('/delete/{id}', 'PostController@destroy')->name('post.delete');
 
 Route::post('/comment/store', 'CommentController@store')->name('comment.add');
 Route::post('/reply/store', 'CommentController@replyStore')->name('reply.add');
+Route::get('/alluser','ShowalluserController@index');
+Route::post('/follow{id}','ShowalluserController@follow')->name('follow.follow');

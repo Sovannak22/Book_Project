@@ -34,6 +34,10 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::all();
+        $follows = DB::table('follows')
+        ->join('users','follows.user_id','users.id')
+        ->where('users.id',Auth::user()->id)
+        ->get();    
         return view('books.index')->with('books',$books);
 
     }
@@ -163,9 +167,11 @@ class BookController extends Controller
 
     public function search(Request $request){
         $searchData = $request->searchBook;
-        $books = DB::table('books')
-            ->where('title','like','%'.$searchData.'%')
-            ->get();
+        // $books = DB::table('books')
+        //     ->where('title','like','%'.$searchData.'%')
+        //     ->get();
+        $books = Book::where('title','like','%'.$searchData.'%')->get();
+        // dd($books);
         return view('books.index')->with('books',$books);
     
     }

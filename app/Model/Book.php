@@ -31,4 +31,9 @@ class Book extends Model
     public function sold(){
         return $this->hasOne('App\Model\Sold');
     }
+
+    // REALATIONSHIP BETWEEN BOOK AND CART
+    public function carts(){
+        return $this->belongsToMany('App\Model\Cart');
+    }
 }

@@ -107,7 +107,7 @@
                                     <div class="backside">
                                         <div class="card">
                                             <div class="card-body mt-4">
-                                                <h4 class="card-title">{{ $book->title }}</h4>
+                                                <a href="/books/{{$book->id}}"><h4 class="card-title">{{ $book->title }}</h4></a>
                                                 <p class="card-text">By: {{$book->author}}</p>
                                                 <p class="card-text">Category:  @foreach($book->categories as $category) <span class="bg-primary rounded p-1">{{$category->category}}</span> @endforeach</p>
                                                 <p class="card-text">{{ str_limit($book->description, $limit = 50, $end = '...') }}</p>
@@ -115,15 +115,15 @@
                                             </div>
                                             <div class="card-footer text-center">
                                                 @if($book->store->user->id != Auth::user()->id)
-                                                <button class="btn btn-warning rounded py-1" onclick="alertAddToCart(this)" value="{{$book->id}}">
-                                                    <i class="fa fa-cart-plus"></i>
+                                                <button class="btn btn-info rounded" onclick="alertAddToCart(this)" value="{{$book->id}}">
+                                                    <i class="fa fa-cart-plus my-1 mx-2"></i>
                                                 </button>
-                                                <a href="" class="btn btn-success rounded"><i class="fa fa-check"></i></a>
+                                                <a href="" class="btn btn-success rounded"><i class="fa fa-check mx-2"></i></a>
                                                 @else 
-                                                <button class="btn btn-danger rounded py-1" onclick="alertAddToCart(this)" value="{{$book->id}}">
-                                                    <i class="fa fa-trash"></i>
+                                                <button class="btn btn-danger rounded" onclick="alertAddToCart(this)" value="{{$book->id}}">
+                                                    <i class="fa fa-trash my-1 mx-2"></i>
                                                 </button>
-                                                <a href="/books/{{$book->id}}/edit" class="btn btn-warning rounded"><i class="fa fa-pencil-square"></i></a>
+                                                <a href="/books/{{$book->id}}/edit" class="btn btn-secondary rounded">EDIT</a>
                                                 @endif
                                             </div>
                                         </div>

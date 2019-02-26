@@ -94,7 +94,13 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        //
+        $book=Book::find($id);
+        $store=$book->store;
+        $data=array(
+            'book'=>$book,
+            'store'=>$store
+        );
+        return view('books.show')->with($data);
     }
 
     /**
@@ -157,9 +163,11 @@ class BookController extends Controller
 
     public function search(Request $request){
         $searchData = $request->searchBook;
-        $books = DB::table('books')
-            ->where('title','like','%'.$searchData.'%')
-            ->get();
+        // $books = DB::table('books')
+        //     ->where('title','like','%'.$searchData.'%')
+        //     ->get();
+        $books = Book::where('title','like','%'.$searchData.'%')->get();
+        // dd($books);
         return view('books.index')->with('books',$books);
     
     }

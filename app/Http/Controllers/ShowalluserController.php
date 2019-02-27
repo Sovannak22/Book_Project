@@ -22,8 +22,12 @@ class ShowalluserController extends Controller
             ->join('users','follows.user_id','users.id')
             ->where('users.id',Auth::user()->id)
             ->get();
+        $followingNotCount = DB::table('follows')
+	        ->join('users','follows.user_id','users.id')
+	        ->where('follows.follower_id',Auth::user()->id)
+	        ->get();
         // dd($follows);
-        return view('Show_user.ShowAllUser', compact('users','follows'));
+        return view('Show_user.ShowAllUser', compact('users','follows','followingNotCount'));
     }
     public function follow($id)
     {

@@ -12,6 +12,8 @@
         <div class="col-4 d-flex justify-content-center">
             <p>Action</p>
         </div>
+    </div>
+</div>
 @foreach($users as $user)
   @if (Auth::user()->id != $user->id)
     <div class="container" style="background-color: white;">
@@ -25,17 +27,31 @@
           <div class="col-4 d-flex justify-content-center">
             @if(count($follows)>0)
               @foreach ($follows as $follow)
-              @if ($follow->follower_id==$user->id)
+              @php
+                $hasFollow=0;
+                //$user=Auth::user();
+                foreach ($followingNotCount as $following){
+                  
+                  if ($following->user_id==$user->id){
+                    $hasFollow=1;
+                    break;
+                  }
+                }
+              @endphp
+              @if ($hasFollow==1)
                 <a style="background-color:;height: 30px" class="btn btn-light" href="#">Following</a>
               @else 
-                <a style="background-color:;height: 30px" class="btn btn-primary" href="#">Follow</a>
+                <a style="background-color:;height: 30px" class="btn btn-primary"href="{{route('follow.follow', $user->id)}}">Follow</a>
               @endif
               @endforeach
             @else
-            <a style="background-color:;height: 30px" class="btn btn-primary" href="#">Follow</a>
+             <a style="background-color:;height: 30px" class="btn btn-primary" href="{{route('follow.follow', $user->id)}}">Follow</a>
             @endif
           </div>
+        </div> 
+    </div>
   @endif
+
   @endforeach
-</div>
+
 @endsection

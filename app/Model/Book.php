@@ -3,11 +3,14 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use willvincent\Rateable\Rateable;
 use App\Model\Category;
 use App\User;
 
 class Book extends Model
 {
+    use Rateable;
+    
     protected $fillable = [
         'title','author','description','book_img'
     ];
@@ -30,5 +33,10 @@ class Book extends Model
 
     public function sold(){
         return $this->hasOne('App\Model\Sold');
+    }
+
+    // REALATIONSHIP BETWEEN BOOK AND CART
+    public function carts(){
+        return $this->belongsToMany('App\Model\Cart');
     }
 }

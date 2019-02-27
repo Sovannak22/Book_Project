@@ -30,10 +30,14 @@
                       <div class="user-btn">
                         <a href="#">
                           <div class="row">
-                            <img src="/images/cats_blue_eyes_animals_pets_4288x2848.jpg" class="user-img-btn" alt=" ">
-                            <p class="user-name-btn">
-                              {{ $post->user->name }}
-                            </p>
+                            <div col-lg-6 col-md-6>
+                              <img src="/images/cats_blue_eyes_animals_pets_4288x2848.jpg" class="user-img-btn" alt=" ">
+                            </div>
+                            <div col-lg-6 col-md-6>
+                              <small class="user-name-btn">
+                                {{ $post->user->name }}
+                              </small>
+                            </div>
                           </div>
                         </a>
                       </div>

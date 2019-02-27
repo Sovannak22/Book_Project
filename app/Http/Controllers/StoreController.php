@@ -8,11 +8,14 @@ use Illuminate\Http\Request;
 use Auth;
 use DB;
 
+use View;
+
 class StoreController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth',['except'=>['index','show']]);
+        // View::share('bookInCart', $bookInCart);
         
     }
     /**

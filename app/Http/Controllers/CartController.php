@@ -24,11 +24,9 @@ class CartController extends Controller
     public function show(){
         $cart_id = Auth::user()->cart->id;
 
-        $books = DB::table('carts')
-            ->join('book_cart','carts.id','book_cart.cart_id')
-            ->join('books','books.id','book_cart.book_id')
-            ->where('carts.id',$cart_id)
-            ->get();
+        $cart_id = Auth::user()->cart->id;
+        $books = Cart::find($cart_id)->books;
+        // dd($books);
         return view('carts.show')->with('books',$books);
 
     }
@@ -36,6 +34,12 @@ class CartController extends Controller
     public function addBookToCart(Request $request){
         $book_id = $request->get("book_id");
         $cart_id = Auth::user()->cart->id;
+        $bookInCart = Cart::find($cart_id)->books;
+        foreach ($bookInCart as $book){
+            if ($book_id==$book->id){
+                return 'have';
+            }
+        }
         DB::table('book_cart')->insert(
             ['cart_id' => $cart_id, 'book_id' => $book_id]
         );

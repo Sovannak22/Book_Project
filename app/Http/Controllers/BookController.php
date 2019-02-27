@@ -14,15 +14,30 @@ use Image;
 use Illuminate\Support\Facades\DB;
 use View;
 
+
+
+
 class BookController extends Controller
 {
+    // use Rateable;
 
     public function __construct()
     {
-        $this->middleware('auth',['except'=>['index','show','booksCategory','search']]);
+        $bookInCart=0;
+        $this->middleware('auth');
         $categories = Category::orderBy('category','asc')->get();
         $conditions = Condition::all();
         $fors = ForModel::all();
+        if (Auth::check()){
+            $cart_id=Auth::user()->cart;
+            $books = DB::table('carts')
+            ->join('book_cart','carts.id','book_cart.cart_id')
+            ->join('books','books.id','book_cart.book_id')
+            ->where('carts.id',$cart_id)
+            ->get();
+            $bookInCart = count($books);
+        }
+        View::share('bookInCart', $bookInCart);
         View::share('categories', $categories);
         View::share('conditions', $conditions);
         View::share('fors', $fors);
@@ -35,6 +50,7 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::all();
+        
         return view('books.index')->with('books',$books);
 
     }
@@ -97,6 +113,7 @@ class BookController extends Controller
     {
         $book=Book::find($id);
         $store=$book->store;
+        // dd($book->averageRating());
         $data=array(
             'book'=>$book,
             'store'=>$store
@@ -165,9 +182,11 @@ class BookController extends Controller
 
     public function search(Request $request){
         $searchData = $request->searchBook;
-        $books = DB::table('books')
-            ->where('title','like','%'.$searchData.'%')
-            ->get();
+        // $books = DB::table('books')
+        //     ->where('title','like','%'.$searchData.'%')
+        //     ->get();
+        $books = Book::where('title','like','%'.$searchData.'%')->get();
+        // dd($books);
         return view('books.index')->with('books',$books);
     
     }
@@ -178,11 +197,9 @@ class BookController extends Controller
             $books = Book::all();
         }
         else{
-            $books = DB::table('books')
-                ->join('book_category','books.id','book_category.book_id')
-                ->join('categories','categories.id','book_category.category_id')
-                ->where('categories.id',$category_id)
-                ->get();
+            $category = Category::find($category_id);
+            $books = $category->books()->get();
+            // dd($books);
         }
         return view('books.book_cat_show')->with('books',$books);
     }
@@ -200,5 +217,17 @@ class BookController extends Controller
         //     ['store_id' => $store_id, 'book_id' => $book_id,'buyer_id'=>$buyer_id]
         // );
         return 'success';
+    }
+    
+    public function rating(Request $request,$book_id){
+        
+        $radioVal = $_POST["star"];
+        $book=Book::find($book_id);
+        $rating  = new \willvincent\Rateable\Rating;
+        $rating->rating = $radioVal;
+        $rating->user_id = \Auth::id();        
+        $book->ratings()->save($rating);
+
+        return redirect()->back();
     }
 }

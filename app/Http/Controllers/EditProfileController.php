@@ -25,13 +25,13 @@ class EditProfileController extends Controller
 	        'name'=>'required',
 	      ]);
 
-	      $user = User::find($id);
+		  $user = User::find($id);
 	      $user->name = $request->get('name');
 		  $user->bio = $request->get('bio');
 		  $user->email= $request->get('email');
 	      $user->save();
 
-	      return redirect('/profile');
+	      return redirect(route('profile.index', $user->id));
 	}
 	public function create()
     {

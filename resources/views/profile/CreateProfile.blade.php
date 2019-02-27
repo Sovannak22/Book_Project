@@ -5,19 +5,19 @@
 	<div class="container-fluid">
 		<div class="row ">
 			<div class="col-1">
-				
+
 			</div>
 <!-- profile image ------------------------------------------------------------------------------------------>
 			<div class="col-2 d-flex justify-content-center">
 				<div class="btn">
-					<img data-toggle="modal" data-target="#imageButton" src="/images/{{Auth::user() ->profile_img}}" style="border-radius: 50%;width: 125px;height: 125px" alt="..." class="img-thumbnail">
+					<img data-toggle="modal" data-target="#imageButton" src="/images/{{$user->profile_img}}" style="border-radius: 50%;width: 125px;height: 125px" alt="..." class="img-thumbnail">
 				</div>
 			</div>
 			<div class="col-6">
 				<div class="row">
 <!-- username -------------------------------------------------------------------------------------------->
 					<div class="col-4">
-						<b><h2>{{$username}}</h2></b>
+						<b><h2>{{$user->name}}</h2></b>
 					</div>
 <!-- follower ----------------------------------------------------------------------------------=====---->
 					<div class="col-4">
@@ -42,7 +42,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-3">
-				
+
 			</div>
 			<div class="col-6">
 				<div class="row" id="myDIV">
@@ -69,7 +69,7 @@
 				</div>
 			</div>
 			<div class="col-3">
-				
+
 			</div>
 		</div>
 	</div>
@@ -77,13 +77,13 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-2">
-			
+
 			</div>
 			<div class="col-8" style="margin-top: -15px">
 				<hr>
 			</div>
 			<div class="col-2">
-				
+
 			</div>
 		</div>
 	</div>
@@ -93,7 +93,7 @@
 	<div class="container-fluid" id="store_content">
 		<div class="row">
 			<div class="col-2">
-				
+
 			</div>
 			<div class="col-8">
 				<div class="row" style="margin-bottom : 10px">
@@ -115,7 +115,7 @@
 				</div>
 			</div>
 			<div class="col-2">
-				
+
 			</div>
 		</div>
 	</div>
@@ -123,7 +123,7 @@
 	<div class="container-fluid" id="feed_content" style="display: none;">
 		<div class="row">
 			<div class="col-2">
-				
+
 			</div>
 			<div class="col-8">
 				<div class="row" style="margin-bottom : 10px">
@@ -131,77 +131,86 @@
 						  <div class="row">
 						    <div class="col d-flex justify-content-center">
 					        <div class="container feeds">
-					          @foreach ($posts as $post)
-					            <div class="d-flex justify-content-center">
-					              <div class="post-status col-10">
-					                <div class="post">
-					                  <div class="row">
-					                    <div class="col">
-					                      <div class="user-btn">
-					                        <a href="#">
-					                          <div class="row">
-					                            <img src="/images/cats_blue_eyes_animals_pets_4288x2848.jpg" class="user-img-btn" alt=" ">
-					                            <p class="user-name-btn">
-					                              {{ $post->user->name }}
-					                            </p>
-					                          </div>
-					                        </a>
-					                      </div>
-					                    </div>
-					                    <div class="col-3">
-					                      @if (Auth::user()->id != $post->user->id)
-					                        <button type="button" class="follow-btn btn btn-primary" name="button-follow">
-					                          + follow
-					                        </button>
-					                      @endif
-					                    </div>
-					                  </div>
-					                  <div class="row">
-					                    <div class="col status-post">
-					                      <p class="status-text">
-					                        {{ $post->description }}
-					                      </p>
-															</div>.
-															
-					                  </div>
-					                  <div class="row">
-					                    <div class="col">
-					                      <div class="row like-count">
-					                        <div class="">
-					                            <i class="fas fa-thumbs-up"></i>
-					                        </div>
-					                        <div class="like-num">
-					                          <p>
-					                            1.2k
-					                          </p>
-					                        </div>
-					                      </div>
-					                    </div>
-					                    <div class="col-2">
-					                      <p>{{ $comment->where('post_id', $post->id)->count() }}
-					                        @if ($comment->where('post_id', $post->id)->count() <= 1)
-					                          comment
-					                        @else
-					                          comments
-					                        @endif
-					                      </p>
-					                    </div>
-					                  </div>
-					                  <div class="row cmt-share-btn-group">
-					                    <div class="col">
-					                      <a class="like-btn btn btn-secondary" href="{{ route('feeds.like', $post->id) }}">like</a>
-					                    </div>
-					                    <div class="col">
-					                      <a class="comment-btn btn btn-secondary" href="{{ route('feeds.show', $post->id) }}">comment</a>
-					                    </div>
-					                    <div class="col">
-					                      <a class="share-btn btn btn-secondary">share</a>
-					                    </div>
-					                  </div>
-					                </div>
-					              </div>
-					            </div>
-					          @endforeach
+										@foreach ($posts as $post)
+									<?php
+									$users=$post->users()->get();
+									$count = count($users);?>
+									<div class="d-flex justify-content-center">
+										<div class="post-status col">
+											<div class="post">
+												<div class="row">
+													<div class="col-8">
+														<div class="row">
+															<a href="{{route('profile.index', $post->user_id)}}">
+																<img src="/images/cats_blue_eyes_animals_pets_4288x2848.jpg" style="width:50px;height:50px;margin-left:15px;margin-top:15px;border-radius: 50%;" alt="">
+															</a>
+															<a class="" href="{{route('profile.index', $post->user_id)}}">
+																<p style="margin-top:20px;margin-left: 10px;font-size:20pt;">{{$post->user->name}}</p>
+															</a>
+														</div>
+													</div>
+													<div class="col-4">
+														<div class="row">
+															<div class="col-8">
+																{{-- <button type="button" name="button" style="margin-top:20px;margin-left:50px;">follow</button> --}}
+																<a href="#" class="btn btn-primary" style="margin-top:20px;margin-left:70px;">follow</a>
+															</div>
+															<div class="col-2">
+																@if (Auth::user()->id == $post->user->id)
+																	<div class="col">
+																		<a href="{{route('post.edit', $post->id)}}" class="btn"><i class="far fa-edit"></i></a>
+																		<a href="{{route('post.delete', $post->id)}}" class="btn"><i class="far fa-trash-alt"></i></a>
+																	</div>
+																@endif
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col status-post">
+														<p class="status-text">
+															{{ $post->description }}
+														</p>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col">
+														<div class="row like-count">
+															<div class="">
+																	<i class="fas fa-thumbs-up"></i>
+															</div>
+															<div class="like-num">
+																<p>
+																	{{$count}}
+																</p>
+															</div>
+														</div>
+													</div>
+													<div class="col-2">
+														<p>{{ $comment->where('post_id', $post->id)->count() }}
+															@if ($comment->where('post_id', $post->id)->count() <= 1)
+																comment
+															@else
+																comments
+															@endif
+														</p>
+													</div>
+												</div>
+												<div class="row cmt-share-btn-group">
+													<div class="col">
+														<a class="like-btn btn btn-secondary" href="{{ route('feeds.like', $post->id) }}"	style="width:115%;">like</a>
+													</div>
+													<div class="col">
+														<a class="comment-btn btn btn-secondary" href="{{ route('feeds.show', $post->id) }}" style="width:120%;margin-left:-16px;">comment</a>
+													</div>
+													<div class="col">
+														<a class="share-btn btn btn-secondary" style="width:111.5%;">share</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								@endforeach
 					        </div>
 					      </div>
 					    </div>
@@ -209,7 +218,7 @@
 				</div>
 			</div>
 			<div class="col-2">
-				
+
 			</div>
 		</div>
 	</div>

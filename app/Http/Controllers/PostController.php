@@ -26,20 +26,46 @@ class PostController extends Controller
     {
         $posts = Post::all()->sortByDesc('created_at');
         $comment = Comment::all();
+
         return view('posts.feeds', compact(['posts', 'comment']));
     }
     public function show($id)
     {
         $post = Post::find($id);
-        $comment = Comment::all();    
+        $comment = Comment::all();
         return view('posts.show', compact(['post', 'comment']));
     }
     public function like($id)
     {
+
       $current = Carbon::now();
       $current = new Carbon();
       $post = Post::find($id);
       $post->users()->attach(Auth::user()->id, ['created_at' => $current, 'updated_at' => $current]);
       return back();
+    }
+    public function edit($id)
+    {
+      // code...
+      $post = Post::find($id);
+
+      return view('posts.edit_post', compact(['post']));
+    }
+    public function update(Request $request, $id)
+    {
+      // code...
+      $post = Post::find($id);
+      $post->description = $request->get('description');
+      $post->save();
+
+      return redirect('/');
+    }
+    public function destroy($id)
+    {
+      // code...
+      $post = Post::find($id);
+      $post->delete();
+
+      return redirect('/')->with('success', 'Post has been deleted Successfully');
     }
 }

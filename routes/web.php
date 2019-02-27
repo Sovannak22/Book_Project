@@ -19,9 +19,12 @@ Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('profile', 'ProfileController')->middleware('auth');
+Route::get('profile/{id}', 'ProfileController@index')->name('profile.index')->middleware('auth');
+Route::delete('profile/{id}', 'ProfileController@destroy')->name('profile.destroy')->middleware('auth');
+Route::match(['put', 'patch'],'profile/{id}', 'ProfileController@update')->name('profile.update')->middleware('auth');
 Route::get('/editprofile/edit/{id}', 'EditProfileController@edit')->name('editprofile.edit');
 Route::post('/updateprofile/update/{id}', 'EditProfileController@update')->name('editprofile.update');
+
 Route::resource('books','BookController');
 Route::get('/missstore','BookController@erroMissingStore');
 Route::get('/searchBooks','BookController@search');
@@ -48,6 +51,9 @@ Route::get('/', 'PostController@index')->name('feeds')->middleware('auth');
 Route::post('/store', 'PostController@store')->name('feeds.store');
 Route::get('/post/{id}', 'PostController@show')->name('feeds.show');
 Route::get('/like/{id}', 'PostController@like')->name('feeds.like');
+Route::get('/edit/{id}', 'PostController@edit')->name('post.edit');
+Route::post('/update/{id}', 'PostController@update')->name('post.update');
+Route::get('/delete/{id}', 'PostController@destroy')->name('post.delete');
 
 Route::post('/comment/store', 'CommentController@store')->name('comment.add');
 Route::post('/reply/store', 'CommentController@replyStore')->name('reply.add');

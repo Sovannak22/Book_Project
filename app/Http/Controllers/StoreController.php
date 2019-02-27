@@ -12,7 +12,7 @@ class StoreController extends Controller
     public function __construct()
     {
         $this->middleware('auth',['except'=>['index','show']]);
-        
+
     }
     /**
      * Display a listing of the resource.
@@ -33,7 +33,7 @@ class StoreController extends Controller
     public function create()
     {
         $user=Auth::user();
-        
+
         return view('stores.create')->with('user',$user);
     }
 
@@ -98,14 +98,14 @@ class StoreController extends Controller
                     'store' => (Store::find($id)),
                     'bookSide' => $bookSide,
                     'books' => $books,
-                    
+
                 );
                 return view('stores.manage')->with($data);
             }
             $data=array(
                 'store' => (Store::find($id)),
                 'bookSide' => $bookSide,
-                
+
             );
             return view('stores.manage')->with($data);
         }
@@ -115,7 +115,7 @@ class StoreController extends Controller
     }
     public function edit($id)
     {
-        
+
     }
 
     /**

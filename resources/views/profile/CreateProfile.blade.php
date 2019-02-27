@@ -30,7 +30,7 @@
 				</div>
 <!-- description--------------------------------------------------------------------------------------->
 				<div class="row">
-					<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
+					<p>{{$user->bio}}
 					</p>
 				</div>
 			</div>
@@ -100,7 +100,7 @@
 					@foreach($books as $book)
 					<div class="col-4" style="height:350px">
 						<div class="card">
-						  	<img class="card-img-top" src="images/{{$book->book_img}}" alt="Card image cap" style="width:75%;height:200px;margin: 0 auto;">
+						  	<img class="card-img-top" src="/images/{{$book->book_img}}" alt="Card image cap" style="width:75%;height:200px;margin: 0 auto;">
 						  	<div class="card-body">
 						    	<h5 class="card-title">{{$book->title}}</h5>
 						    	<p class="card-text">{{str_limit($book->description,$limit = 100, $end = '...')}}</p>
@@ -142,7 +142,7 @@
 													<div class="col-8">
 														<div class="row">
 															<a href="{{route('profile.index', $post->user_id)}}">
-																<img src="/images/cats_blue_eyes_animals_pets_4288x2848.jpg" style="width:50px;height:50px;margin-left:15px;margin-top:15px;border-radius: 50%;" alt="">
+																<img src="/images/default.jpg" style="width:50px;height:50px;margin-left:15px;margin-top:15px;border-radius: 50%;" alt="">
 															</a>
 															<a class="" href="{{route('profile.index', $post->user_id)}}">
 																<p style="margin-top:20px;margin-left: 10px;font-size:20pt;">{{$post->user->name}}</p>
@@ -252,7 +252,7 @@
 								}
 							@endphp
 							<div class="col-4 d-flex justify-content-center">
-							<img src="images/default.jpg" alt="tktk" style="border-radius: 50%;width: 30px;height: 30px">
+							<img src="/images/{{$user->profile_img}}" alt="tktk" style="border-radius: 50%;width: 30px;height: 30px">
 							</div>
 							<div class="col-4 d-flex justify-content-center">
 								<p>{{$user_name}}</p>
@@ -288,7 +288,7 @@
 	      			<div class="row">
 								
 							<div class="col-4 d-flex justify-content-center">
-							<img src="images/default.jpg" alt="tktk" style="border-radius: 50%;width: 30px;height: 30px">
+							<img src="/images/{{$user->profile_img}}" alt="tktk" style="border-radius: 50%;width: 30px;height: 30px">
 							</div>
 							<div class="col-4 d-flex justify-content-center">
 								<p>{{$user->name}}</p>

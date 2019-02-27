@@ -1,21 +1,13 @@
 @extends('layouts.store_2')
 
-@section('content')
-    <?php 
-        $sold=count($store->solds);
-        $sum=0;
-        foreach ($store->solds as $sold) {
-            
-            $sum+=$sold->price;
-        }
-    ?>
+@section('content') 
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-12 col-12">
                 <div style="height:10rem" class="text-center bg-danger rounded pt-5">
                     <h1>Sold: {{$sold}}</h1>
                     <h4 class="text-light">
-                        Income: {{$sum}}
+                        Income: @php echo sprintf("%.2f", $income); @endphp
                     </h4>
                 </div>
             </div>
@@ -92,7 +84,9 @@
                                                     <a class="btn btn-secondary" href="">Edit</a>
                                                 </th>
                                                 <th>
-                                                    <a class="btn btn-danger" href="">Delete</a>
+                                                    <button class="btn btn-danger rounded py-1" onclick="alertDelete(this,'{{csrf_token()}}')" value="{{$book->id}}">
+                                                        <i class="fa fa-trash my-1 mx-2"></i>
+                                                    </button>
                                                 </th>
                                             </tr>
                                         @endforeach
@@ -110,4 +104,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+<script src="{{ asset('js/deleteBook.js') }}"></script>
 @endsection

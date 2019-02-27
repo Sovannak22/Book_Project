@@ -6,6 +6,7 @@ use App\Model\Store;
 use App\Model\Book;
 use Illuminate\Http\Request;
 use Auth;
+use DB;
 
 class StoreController extends Controller
 {
@@ -84,7 +85,14 @@ class StoreController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function manage($id){
-
+        $sold=0;
+        $income=0;
+        $sold_books=DB::table('books')->join('solds','solds.book_id','books.id')
+                    ->where('solds.store_id',$id)->get();
+        foreach($sold_books as $sold_book){
+            $income += $sold_book->price;
+        }
+        $sold=count($sold_books);
         if (Auth::user()->has_store==1){
             $bookInStore=count(Store::find($id)->books);
             $bookSide=0;
@@ -98,13 +106,16 @@ class StoreController extends Controller
                     'store' => (Store::find($id)),
                     'bookSide' => $bookSide,
                     'books' => $books,
-                    
+                    'sold' => $sold,
+                    'income' => $income
                 );
                 return view('stores.manage')->with($data);
             }
             $data=array(
                 'store' => (Store::find($id)),
                 'bookSide' => $bookSide,
+                'sold' => $sold,
+                'income' => $income
                 
             );
             return view('stores.manage')->with($data);

@@ -1,22 +1,21 @@
-function alertDelete(button,token){
+function alertBuyBook(button,token){
     swal({
         title: "Are you sure?",
-        text: "Delet this book",
-        icon:"warning",
+        text: "Buy this book?",
+        icon:"info",
         buttons: true,
         })
-        .then((willDelete) => {
-        if (willDelete) {
+        .then((willBuy) => {
+        if (willBuy) {
             var id=$(button).val();
             $.ajax({
-                type: 'DELETE',
-                async: true,
-                url: "/books/"+id,
-                data: {'book_id':id,'_token':token,"_method": 'DELETE'},
+                type: 'POST',
+                url: "/buy_book",
+                data: {'book_id':id,'_token':token},
                 success:function(responce){
                     console.log(responce);
                     if (responce=="success"){
-                        swal("Book deleted", {
+                        swal("You bougth this book...", {
                             icon: "success",
                             
                         })

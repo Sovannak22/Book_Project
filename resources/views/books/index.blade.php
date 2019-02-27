@@ -91,7 +91,7 @@
         <div class="row" id="books_show">
             @if(count($books)>0)
                 @foreach ($books as $book)
-                <div class="col-sm-3 my-3">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6 my-3">
                     <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
                             <div class="mainflip">
                                 <div class="frontside">
@@ -118,7 +118,9 @@
                                                 <button class="btn btn-warning rounded py-1" onclick="alertAddToCart(this,'{{csrf_token()}}')" value="{{$book->id}}">
                                                     <i class="fa fa-cart-plus my-1 mx-2"></i>
                                                 </button>
-                                                <a href="" class="btn btn-success rounded"><i class="fa fa-check mx-2"></i></a>
+                                                <button class="btn btn-success rounded py-1" onclick="alertBuyBook(this,'{{csrf_token()}}')" value="{{$book->id}}">
+                                                    <h6>Buy</h6>
+                                                </button>
                                                 @else 
                                                 <button class="btn btn-danger rounded py-1" onclick="alertDelete(this,'{{csrf_token()}}')" value="{{$book->id}}">
                                                     <i class="fa fa-trash my-1 mx-2"></i>
@@ -149,6 +151,7 @@
 @section('js')
     <script src="{{ asset('js/addToCart.js') }}"></script>
     <script src="{{ asset('js/deleteBook.js') }}"></script>
+    <script src="{{ asset('js/buyBook.js') }}"></script>
     <script>
         $(document).ready(function(){
             @foreach($categories as $category)

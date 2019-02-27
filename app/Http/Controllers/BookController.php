@@ -9,6 +9,7 @@ use App\Model\Book;
 use App\Model\Store;
 use App\Model\Condition;
 use App\Model\ForModel;
+use App\Model\Sold;
 use Image;
 use Illuminate\Support\Facades\DB;
 use View;
@@ -184,5 +185,20 @@ class BookController extends Controller
                 ->get();
         }
         return view('books.book_cat_show')->with('books',$books);
+    }
+
+    public function buyBook(Request $request){
+        $book_id = $request->get("book_id");
+        $store_id = Book::find($book_id)->store->id;
+        $buyer_id = Auth::user()->id;
+        $sold = new Sold;
+        $sold->book_id=$book_id;
+        $sold->store_id=$store_id;
+        $sold->buyer_id = $buyer_id;
+        $sold->save(); 
+        // DB::table('solds')->insert(
+        //     ['store_id' => $store_id, 'book_id' => $book_id,'buyer_id'=>$buyer_id]
+        // );
+        return 'success';
     }
 }

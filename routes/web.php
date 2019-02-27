@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('profile/{id}', 'ProfileController@index')->name('profile.index')->middleware('auth');
 Route::delete('profile/{id}', 'ProfileController@destroy')->name('profile.destroy')->middleware('auth');
-Route::put('profile/{id}', 'ProfileController@update')->name('profile.update')->middleware('auth');
+Route::match(['put', 'patch'],'profile/{id}', 'ProfileController@update')->name('profile.update')->middleware('auth');
 Route::get('/editprofile/edit/{id}', 'EditProfileController@edit')->name('editprofile.edit');
 Route::post('/updateprofile/update/{id}', 'EditProfileController@update')->name('editprofile.update');
 

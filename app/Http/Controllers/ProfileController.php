@@ -132,6 +132,6 @@ class ProfileController extends Controller
         $user = user::find($id);
         $user->profile_img = $filename;
         $user->save();
-        return redirect('/profile');
+        return redirect()->back();
     }
 }

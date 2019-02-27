@@ -25,7 +25,9 @@
               <p>{{ $user->name }}</p>
           </div>
           <div class="col-4 d-flex justify-content-center">
+            @php //dd($follows); @endphp
             @if(count($follows)>0)
+
               @foreach ($follows as $follow)
               @php
                 $hasFollow=0;

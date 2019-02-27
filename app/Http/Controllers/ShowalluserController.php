@@ -20,8 +20,9 @@ class ShowalluserController extends Controller
         // $follows = Follow::all();
         $follows = DB::table('follows')
             ->join('users','follows.user_id','users.id')
-            ->where('users.id',Auth::user()->id)
+            ->where('follows.follower_id',Auth::user()->id)
             ->get();
+        // dd($follows);
         $followingNotCount = DB::table('follows')
 	        ->join('users','follows.user_id','users.id')
 	        ->where('follows.follower_id',Auth::user()->id)

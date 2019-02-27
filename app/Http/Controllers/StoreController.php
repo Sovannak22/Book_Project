@@ -17,6 +17,7 @@ class StoreController extends Controller
         $this->middleware('auth',['except'=>['index','show']]);
         // View::share('bookInCart', $bookInCart);
         
+
     }
     /**
      * Display a listing of the resource.
@@ -37,7 +38,7 @@ class StoreController extends Controller
     public function create()
     {
         $user=Auth::user();
-        
+
         return view('stores.create')->with('user',$user);
     }
 
@@ -109,17 +110,25 @@ class StoreController extends Controller
                     'store' => (Store::find($id)),
                     'bookSide' => $bookSide,
                     'books' => $books,
+<<<<<<< HEAD
                     'sold' => $sold,
                     'income' => $income
+=======
+
+>>>>>>> 05e4e58461790704b640d2cb8c558ef48b5a4c3f
                 );
                 return view('stores.manage')->with($data);
             }
             $data=array(
                 'store' => (Store::find($id)),
                 'bookSide' => $bookSide,
+<<<<<<< HEAD
                 'sold' => $sold,
                 'income' => $income
                 
+=======
+
+>>>>>>> 05e4e58461790704b640d2cb8c558ef48b5a4c3f
             );
             return view('stores.manage')->with($data);
         }
@@ -129,7 +138,7 @@ class StoreController extends Controller
     }
     public function edit($id)
     {
-        
+
     }
 
     /**

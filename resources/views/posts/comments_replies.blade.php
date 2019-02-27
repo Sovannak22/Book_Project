@@ -3,7 +3,7 @@
      <div class="row">
        <div class="col-2">
           <div class="user-btn">
-             <a href="#">
+          <a href="{{route('profile.index', $post->user->id)}}">
                <div class="row">
                  <img src="/images/cats_blue_eyes_animals_pets_4288x2848.jpg" class="user-img-btn-cmt" alt=" ">
                  <p class="user-name-btn">

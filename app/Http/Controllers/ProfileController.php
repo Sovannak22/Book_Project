@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use App\Model\Follow;
 use App\Model\Book;
 use App\Model\Post;
+use App\Model\Store;
 use App\Model\Comment;
 use Auth;
 use App\User;
 use Image;
+use DB;
 class ProfileController extends Controller
 {
     /**
@@ -17,15 +19,35 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $books = Book::all();
-        $username =  \Auth::user()->name;
-        $follower = Follow::where('user_id',Auth::user()->id)->count('follower_id');
-        $following = Follow::where('follower_id',Auth::user()->id)->count('user_id');
-        $posts = Post::all()->where('user_id',Auth::user()->id)->sortByDesc('created_at');
+        $user =  User::find($id);
+        $store = Store::where('user_id', $user->id)->first();
+        // dd($store);
+        $books = Book::all()->where('store_id',$store->id);
+        // dd($books);
+        $follower = Follow::where('user_id', $user->id)->count('follower_id');
+        $following = Follow::where('follower_id', $user->id)->count('user_id');
+        $posts = Post::all()->where('user_id', $user->id)->sortByDesc('created_at');
         $comment = Comment::all();
-        return view('profile.CreateProfile',compact('username','follower','following','books','posts','comment')); 
+
+        // $books = Book::all();
+        // $username =  \Auth::user()->name;
+        // $follower = Follow::where('follower_id',Auth::user()->id)->count('user_id');
+        // $following = Follow::where('user_id',Auth::user()->id)->count('follower_id');
+        $followingNotCount = DB::table('follows')
+        ->join('users','follows.user_id','users.id')
+        ->where('follows.follower_id',Auth::user()->id)
+        ->get();
+        $followerUsers = DB::table('follows')
+        ->join('users','follows.user_id','users.id')
+        ->where('follows.user_id',Auth::user()->id)
+        ->get();
+        // dd($followingNotCount);
+        // $posts = Post::all()->where('user_id',Auth::user()->id)->sortByDesc('created_at');
+        // $comment = Comment::all();
+        // return view('profile.CreateProfile',compact('username','follower','following','books','posts','comment','followingNotCount','followerUsers'));
+        return view('profile.CreateProfile',compact('user','follower','following','books','posts','comment','followingNotCount','followerUsers'));
     }
 
     /**
@@ -33,10 +55,10 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-      
-    }
+    // public function create()
+    // {
+    //
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -44,10 +66,10 @@ class ProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    // public function store(Request $request)
+    // {
+    //     //
+    // }
 
     /**
      * Display the specified resource.
@@ -55,10 +77,10 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+    // public function show($id)
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -66,10 +88,10 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+    // public function edit($id)
+    // {
+    //     //
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -96,7 +118,7 @@ class ProfileController extends Controller
     //    return redirect('/profile');
         return back();
     }
-    
+
 
     /**
      * Remove the specified resource from storage.
@@ -110,6 +132,6 @@ class ProfileController extends Controller
         $user = user::find($id);
         $user->profile_img = $filename;
         $user->save();
-        return redirect('/profile');
+        return redirect()->back();
     }
 }

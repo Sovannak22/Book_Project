@@ -50,7 +50,10 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::all();
-        
+        $follows = DB::table('follows')
+        ->join('users','follows.user_id','users.id')
+        ->where('users.id',Auth::user()->id)
+        ->get();    
         return view('books.index')->with('books',$books);
 
     }
